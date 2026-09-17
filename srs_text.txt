@@ -1,0 +1,4746 @@
+﻿                                                                           
+srs
+Syed iftikhar shah
+bsse-24s-0089bsse-24s-0089
+bsse-24s-0089
+bsse-24s-0089
+
+                                      UniGuid.pk SRS
+Table of Contents
+Section 1 — Introduction2
+1.1 Purpose2
+1.2 Scope2
+Student Portal3
+University Portal3
+Admin Portal3
+1.3 Objectives3
+1.4 Intended Audience4
+1.5 Product Perspective4
+1.6 Project Goals4
+1.7 Technologies Used5
+Frontend5
+Backend5
+Database5
+Authentication5
+File Storage5
+API Integration5
+Development Tools5
+Deployment (Future)5
+Why Firebase is a good choice for UniGuid.pk6
+Software Requirements Specification (SRS)6
+UniGuid.pk – University Admission & Scholarship Guidance Platform6
+Section 2 – Overall Description6
+2.1 Product Perspective6
+Partner Universities6
+Non-Partner Universities6
+2.2 Product Functions7
+Student Functions7
+University Functions7
+Administrator Functions8
+2.3 User Classes8
+Student8
+University Administrator8
+System Administrator9
+Guest User9
+2.4 Operating Environment9
+Client Side9
+Devices9
+Server Side10
+2.5 Design Constraints10
+2.6 User Documentation10
+2.7 Assumptions and Dependencies10
+2.8 Business Workflow11
+2.9 Development Methodology11
+Sprint 112
+Sprint 212
+Sprint 312
+Sprint 412
+Sprint 512
+Sprint 612
+Sprint 712
+Sprint 812
+2.10 Software Quality Assurance (SQA)12
+ection 3 – Specific Requirements (Functional Requirements)13
+3.1 User Roles13
+3.2 Guest Module13
+FR-001 User can view Home Page.13
+FR-002 User can search universities without login.13
+FR-003 User can view university details.13
+FR-004 User can search scholarships.13
+FR-005 User can view admission information.13
+FR-006 User can register as a student.13
+3.3 Authentication Module13
+FR-007 Student Registration13
+FR-008 Login14
+FR-009 Logout14
+FR-010 Forgot Password14
+3.4 Student Profile Module14
+FR-011 Create Student Profile14
+FR-012 Academic Information14
+FR-013 Document Upload15
+FR-014 Edit Profile15
+3.5 University Module15
+FR-015 Search Universities15
+FR-016 Filter Universities15
+FR-017 University Details16
+FR-018 Program Details16
+3.6 Scholarship Module16
+FR-019 Scholarship Listing16
+FR-020 Scholarship Details16
+FR-021 Scholarship Search17
+3.7 Admission Module17
+FR-022 Admission Listing17
+FR-023 Admission Details17
+FR-024 Apply Now17
+FR-025 Internal Admission Application18
+FR-026 Redirect Module18
+3.8 Partner University API Module18
+FR-027 API Integration18
+FR-028 API Response18
+FR-029 API Logging19
+3.9 Student Application Module19
+FR-030 My Applications19
+FR-031 Application Status19
+FR-032 Notifications19
+3.10 University Dashboard19
+FR-033 University Login19
+FR-034 University Dashboard20
+FR-035 Manage Admissions20
+FR-036 Manage Programs20
+FR-037 Manage Scholarships20
+FR-038 Review Applications21
+FR-039 Admission Decision21
+3.11 Admin Module21
+FR-040 Admin Login21
+FR-041 Manage Students21
+FR-042 Manage Universities21
+FR-043 Partner University Approval21
+FR-044 Manage Admissions21
+FR-045 Manage Scholarships22
+FR-046 Manage Applications22
+FR-047 Reports22
+FR-048 Notifications22
+3.12 Future AI Module22
+FR-049 AI University Recommendation22
+FR-050 AI Scholarship Recommendation22
+3.13 Functional Requirement Summary22
+Section 4 – External Interface Requirements23
+4.1 User Interface Requirements23
+4.2 Student Interface23
+Page 1 – Landing (Home) Page23
+Page 2 – Login24
+Page 3 – Registration24
+Page 4 – Student Dashboard24
+Page 5 – Student Profile25
+Page 6 – University Listing25
+Page 7 – University Details25
+Page 8 – Scholarship Page26
+Page 9 – Admission Page26
+Page 10 – My Applications26
+Page 11 – Notifications27
+4.3 University Interface27
+4.4 Administrator Interface28
+4.5 Software Interfaces29
+4.6 Communication Interfaces30
+4.7 Hardware Requirements30
+Client30
+Server30
+4.8 Security Interface Requirements30
+4.9 Error Handling31
+4.10 Accessibility Requirements31
+Review & Improvement Suggestions31
+Next Section32
+Section 5 – Non-Functional Requirements (NFR)32
+5.1 Overview32
+5.2 Performance Requirements (NFR-001)32
+Requirements32
+5.3 Availability (NFR-002)33
+5.4 Reliability (NFR-003)33
+5.5 Security (NFR-004)33
+5.6 Usability (NFR-005)34
+5.7 Maintainability (NFR-006)34
+5.8 Scalability (NFR-007)34
+5.9 Portability (NFR-008)35
+5.10 Compatibility (NFR-009)35
+5.11 Data Integrity (NFR-010)35
+5.12 Backup and Recovery (NFR-011)36
+5.13 Privacy (NFR-012)36
+5.14 Accessibility (NFR-013)36
+5.15 Audit & Logging (NFR-014)36
+5.16 Quality Attributes Summary37
+Review37
+The next section is critical:37
+Section 6 – System Architecture & Database Design37
+Section 6 – System Architecture and Database Design38
+6.1 Introduction38
+6.2 System Architecture38
+Presentation Layer (Frontend)38
+Application Layer (Backend)39
+Data Layer39
+6.3 High-Level Architecture40
+6.4 User Roles40
+Guest40
+Student40
+University Administrator41
+System Administrator41
+6.5 Firestore Collections41
+Users41
+Students42
+AcademicRecords42
+Documents42
+Universities43
+Departments43
+Programs43
+Scholarships44
+Admissions44
+Applications44
+Notifications44
+6.6 Firebase Storage Structure45
+6.7 Role-Based Access Control (RBAC)45
+6.8 Security Rules45
+6.9 Data Flow Overview46
+6.10 Architecture Principles46
+Section 7 – Database Design47
+7.1 Introduction47
+7.2 Database Objectives47
+7.3 Firestore Collections47
+Collection 1: Users47
+Collection 2: Students48
+Collection 3: Academic Records48
+Collection 4: Student Documents49
+Collection 5: Universities49
+Collection 6: Departments50
+Collection 7: Programs50
+Collection 8: Scholarships51
+Collection 9: Admissions51
+Collection 10: Applications52
+Collection 11: Notifications52
+Collection 12: Partner APIs53
+7.4 Collection Relationships53
+7.5 Data Validation Rules54
+7.6 Firebase Security Rules54
+7.7 Data Retention54
+7.8 Database Indexing54
+7.9 Backup & Recovery55
+Section 8 – API Specification55
+8.1 Introduction55
+8.2 API Architecture55
+8.3 Authentication APIs55
+API-001 Register Student55
+API-002 Login56
+API-003 Logout56
+API-004 Reset Password57
+8.4 Student APIs57
+API-005 Create Student Profile57
+API-006 Get Student Profile57
+API-007 Update Student Profile57
+API-008 Upload Documents57
+8.5 University APIs58
+API-009 Get Universities58
+API-010 Get University Details58
+API-011 Get Programs58
+API-012 Search Universities58
+8.6 Scholarship APIs58
+API-013 Get Scholarships58
+API-014 Scholarship Details59
+8.7 Admission APIs59
+API-015 Get Admissions59
+API-016 Admission Details59
+API-017 Apply Admission59
+8.8 Application APIs60
+API-018 Get My Applications60
+API-019 Application Details60
+API-020 Update Status60
+8.9 University Dashboard APIs60
+API-021 University Login60
+API-022 Manage Programs60
+API-023 Manage Scholarships61
+API-024 Manage Admissions61
+API-025 Review Applications61
+8.10 Admin APIs61
+API-026 Manage Students61
+API-027 Manage Universities61
+API-028 Partner University Approval61
+API-029 Reports62
+API-030 Notifications62
+8.11 Partner University Integration62
+8.12 Non-Partner University Flow62
+8.13 API Security63
+8.14 Standard Response Format63
+8.15 HTTP Status Codes64
+1.8 Assumptions64
+1.9 Constraints64
+1.10 Success Criteria64
+Section 9 – Use Case Specifications65
+9.1 Overview65
+UC-001 Student Registration65
+Actor65
+Description65
+Preconditions65
+Main Flow65
+Alternate Flow66
+Postcondition66
+UC-002 Student Login66
+Actor66
+Preconditions66
+Main Flow66
+Alternate Flow66
+Postcondition66
+UC-003 Complete Student Profile67
+Actor67
+Preconditions67
+Main Flow67
+Alternate Flow67
+Postcondition67
+UC-004 Upload Documents67
+Actor67
+Preconditions67
+Main Flow67
+Alternate Flow68
+Postcondition68
+UC-005 Search Universities68
+Actor68
+Main Flow68
+Postcondition68
+UC-006 View University Details68
+Actor68
+Main Flow68
+UC-007 Search Scholarships69
+Actor69
+Main Flow69
+UC-008 View Admission Details69
+Actor69
+Main Flow69
+UC-009 Apply for Admission69
+Actor69
+Preconditions70
+Main Flow70
+Postcondition70
+UC-010 Track Application70
+Actor70
+Main Flow70
+UC-011 Receive Notifications71
+Actor71
+UC-012 University Login71
+Actor71
+UC-013 Manage Programs71
+UC-014 Manage Scholarships72
+UC-015 Manage Admissions72
+UC-016 Review Applications72
+UC-017 Accept / Reject Application72
+UC-018 Admin Login73
+UC-019 Manage Universities73
+UC-020 Manage Students73
+UC-021 Manage Applications73
+UC-022 Manage Scholarships74
+UC-023 Send Notifications74
+UC-024 Partner University API74
+UC-025 Redirect to Official Website74
+9.2 Use Case Summary75
+Section 10 – Activity Diagrams76
+10.1 Overview76
+AD-01 Student Registration76
+Description76
+AD-02 Student Login77
+AD-03 Complete Student Profile77
+AD-04 Upload Documents78
+AD-05 Search Universities78
+AD-06 Apply for Admission79
+AD-07 University Reviews Application79
+AD-08 Admin Manages Universities80
+AD-09 Partner University API Integration80
+AD-10 Notification Workflow81
+Activity Diagram Summary81
+Section 11 – Sequence Diagrams82
+11.1 Overview82
+SD-01 Student Registration82
+Objects82
+SD-02 Student Login83
+Objects83
+SD-03 Complete Student Profile83
+Objects83
+SD-04 Upload Documents83
+Objects83
+SD-05 Search Universities84
+Objects84
+SD-06 Apply for Admission84
+Objects84
+SD-07 Partner University API85
+Objects85
+SD-08 Non-Partner University85
+Objects85
+SD-09 University Reviews Application86
+Objects86
+SD-10 Notification System86
+Objects86
+11.2 Sequence Diagram Summary86
+Section 12 – Conceptual ER Diagram & Data Dictionary87
+12.1 Introduction87
+12.2 Conceptual ER Diagram87
+12.3 Relationship Description88
+User → Student88
+Student → Academic Records88
+Student → Documents88
+University → Departments89
+Department → Programs89
+University → Scholarships89
+University → Admissions89
+Student → Applications90
+Program → Applications90
+Student → Notifications90
+12.4 Data Dictionary90
+Users Collection90
+Students Collection91
+Academic Records91
+Documents92
+Universities92
+Departments92
+Programs93
+Scholarships93
+Admissions94
+Applications94
+Notifications94
+12.5 Firestore Collection Structure95
+12.6 Data Integrity Rules95
+12.7 Future Database Enhancements95
+ection 13 – Software Quality Assurance (SQA) Plan96
+13.1 Introduction96
+13.2 SQA Objectives96
+13.3 Quality Standards96
+13.4 Quality Assurance Activities97
+Requirement Phase97
+Design Phase97
+Development Phase98
+Testing Phase98
+Deployment Phase98
+13.5 Software Reviews99
+Requirements Review99
+Design Review99
+Code Review99
+Test Review99
+Final Review100
+13.6 Verification and Validation100
+Verification100
+Validation100
+13.7 Defect Management Process100
+13.8 Configuration Management101
+13.9 Coding Standards101
+13.10 Risk Management102
+13.11 Quality Metrics102
+13.12 Acceptance Criteria102
+13.13 SQA Deliverables103
+13.14 SQA Summary103
+Section 14 – Testing Strategy & Test Cases103
+14.1 Introduction103
+14.2 Testing Objectives103
+14.3 Testing Levels104
+1. Unit Testing104
+2. Integration Testing104
+3. System Testing105
+4. User Acceptance Testing (UAT)105
+14.4 Functional Testing105
+14.5 Non-Functional Testing106
+Performance Testing106
+Security Testing106
+Compatibility Testing106
+Usability Testing107
+Reliability Testing107
+14.6 Test Environment107
+14.7 Sample Test Cases108
+TC-001 Student Registration108
+TC-002 Student Login108
+TC-003 Upload Documents109
+TC-004 Search Universities109
+TC-005 Apply for Admission109
+TC-006 Partner University API110
+TC-007 Non-Partner University110
+TC-008 University Reviews Application110
+TC-009 Admin Adds University110
+TC-010 Scholarship Search111
+14.8 Defect Severity Levels111
+14.9 Bug Life Cycle111
+14.10 Exit Criteria112
+14.11 Testing Deliverables112
+14.12 Testing Summary112
+Section 15 – Requirements Traceability Matrix (RTM)113
+15.1 Introduction113
+15.2 RTM Objectives113
+15.3 Requirements Traceability Matrix113
+15.4 Traceability Workflow115
+15.5 Requirement Status115
+15.6 Change Management116
+15.7 Benefits of RTM116
+15.8 RTM Summary116
+ection 16 – Risk Analysis & Risk Management116
+16.1 Introduction116
+16.2 Risk Identification117
+16.3 Risk Assessment117
+16.4 Risk Mitigation Plan118
+16.5 Risk Monitoring118
+16.6 Risk Summary118
+✅ End of Section 16118
+Section 17 – Project Implementation Plan118
+17.1 Development Methodology118
+17.2 Sprint Plan119
+Sprint 1119
+Sprint 2119
+Sprint 3119
+Sprint 4119
+Sprint 5120
+Sprint 6120
+Sprint 7120
+Sprint 8120
+Sprint 9121
+Sprint 10121
+17.3 Milestones121
+Section 18 – Deployment Plan122
+18.1 Deployment Environment122
+18.2 Deployment Steps122
+18.3 Backup Strategy123
+18.4 Maintenance123
+Section 19 – Future Enhancements123
+Section 20 – References & Appendices124
+References124
+Appendix A – Acronyms124
+Appendix B – Project Scope125
+Appendix C – Assumptions125
+🎉 Congratulations!125
+
+Section 1 — Introduction
+1.1 Purpose
+The purpose of this Software Requirements Specification (SRS) is to define the functional and non-functional requirements of UniGuid.pk, a web-based university admission and scholarship guidance platform developed to simplify the higher education admission process for students across Pakistan.
+The system provides students with a centralized platform where they can search universities, compare academic programs, explore scholarships, check admission eligibility, and apply for admissions through a single portal.
+For partner universities, UniGuid.pk allows direct submission of student applications through secure API integration. For non-partner universities, the system redirects students to the university's official admission portal.
+This document serves as the primary reference for developers, testers, supervisors, stakeholders, and future maintainers throughout the Software Development Life Cycle (SDLC).
+
+1.2 Scope
+UniGuid.pk is a web application designed to reduce the complexity students face when applying to universities.
+The platform enables students to:
+Register and manage their academic profile. 
+Upload educational documents once. 
+Search universities throughout Pakistan. 
+Compare universities, degree programs, and tuition fees. 
+Explore scholarships and eligibility criteria. 
+View admission schedules and deadlines. 
+Apply online through UniGuid.pk for partner universities. 
+Redirect to official university admission portals for non-partner universities. 
+Track admission application status. 
+Receive admission notifications and updates. 
+The platform also provides:
+Student Portal
+Registration 
+Login 
+Profile Management 
+University Search 
+Scholarship Search 
+Admission Application 
+Application Tracking 
+University Portal
+Partner universities can:
+Manage admission announcements 
+Manage programs 
+Manage scholarships 
+Review student applications 
+Accept or reject applications 
+Admin Portal
+Administrators can:
+Manage universities 
+Manage students 
+Verify applications 
+Manage scholarships 
+Generate reports 
+Monitor system activity 
+
+1.3 Objectives
+The primary objectives of UniGuid.pk are:
+Simplify university admissions. 
+Reduce repetitive application forms. 
+Provide verified university information. 
+Improve scholarship awareness. 
+Support partner university integration through APIs. 
+Guide students in selecting suitable universities. 
+Provide a secure and user-friendly platform. 
+
+1.4 Intended Audience
+This document is intended for:
+Project Supervisor 
+Software Developers 
+Software Testers (SQA Team) 
+UI/UX Designers 
+Database Designers 
+University Partners 
+Project Stakeholders 
+Future Maintenance Team 
+
+1.5 Product Perspective
+UniGuid.pk is a standalone web application that connects students with universities.
+The platform acts as a bridge between:
+Students      │      ▼UniGuid.pk      │ ┌────┴─────┐ │          │ ▼          ▼Partner   Non-PartnerUniversities Universities(API)      (Redirect)
+Unlike traditional university websites, UniGuid.pk allows students to discover universities from one platform instead of visiting multiple websites.
+
+1.6 Project Goals
+The system aims to:
+Digitize university admission guidance. 
+Centralize university information. 
+Support online admission applications. 
+Reduce student effort. 
+Increase admission accessibility. 
+Improve communication between students and universities. 
+
+1.7 Technologies Used
+Frontend
+React.js 
+Tailwind CSS 
+JavaScript (ES6+) 
+Backend
+Node.js 
+Express.js 
+Database
+Firebase Firestore 
+Authentication
+Firebase Authentication 
+JSON Web Token (JWT) (only if needed for custom backend APIs) 
+File Storage
+Firebase Storage 
+API Integration
+REST APIs 
+Partner University APIs 
+Development Tools
+Visual Studio Code 
+Git 
+GitHub 
+Postman (API Testing) 
+Figma (UI/UX Design) 
+Deployment (Future)
+Vercel (Frontend) 
+Render (Backend) 
+Firebase Hosting (Optional) 
+
+Why Firebase is a good choice for UniGuid.pk
+Firebase fits your project well because it provides:
+User Authentication (Student, University, Admin) 
+Firestore Database for storing users, universities, scholarships, and applications 
+Firebase Storage for documents such as CNIC, Matric/FSc certificates, and student photos 
+Real-time updates (e.g., application status changes) 
+Secure access through Firebase Security Rules
+Software Requirements Specification (SRS)
+UniGuid.pk – University Admission & Scholarship Guidance Platform
+Section 2 – Overall Description
+
+2.1 Product Perspective
+UniGuid.pk is a centralized web-based platform designed to simplify the university admission process for students across Pakistan. The system provides a single platform where students can search universities, compare programs, explore scholarships, check admission eligibility, and apply for admissions.
+Unlike traditional university websites, UniGuid.pk acts as a bridge between students and universities by centralizing admission-related information.
+The system supports two admission models:
+Partner Universities
+Students submit applications directly through UniGuid.pk. 
+Applications are securely transferred to the university through API integration. 
+Non-Partner Universities
+Students can explore admission details. 
+Clicking Apply Now redirects the student to the university's official admission portal. 
+
+2.2 Product Functions
+UniGuid.pk provides the following major functions.
+Student Functions
+Register an account 
+Login securely 
+Complete personal profile 
+Upload educational documents 
+Search universities 
+Filter universities 
+View university details 
+View offered programs 
+Compare universities 
+View scholarships 
+Check scholarship eligibility 
+View admission deadlines 
+Apply for admissions 
+Track application status 
+Receive notifications 
+Update profile 
+
+University Functions
+Partner universities can
+Login 
+Manage university profile 
+Manage departments 
+Manage degree programs 
+Open or close admissions 
+Add scholarship information 
+Review student applications 
+Accept applications 
+Reject applications 
+Waitlist applicants 
+View admission statistics 
+
+Administrator Functions
+Administrator can
+Manage students 
+Manage universities 
+Approve partner universities 
+Manage scholarships 
+Manage admissions 
+Monitor applications 
+Manage system users 
+Generate reports 
+Monitor security 
+Manage notifications 
+
+2.3 User Classes
+The system has four primary users.
+Student
+Students can
+Search universities 
+View scholarships 
+Submit applications 
+Upload documents 
+Track admission status 
+
+University Administrator
+University administrators can
+Manage admission announcements 
+Review applications 
+Manage programs 
+Manage scholarships 
+Update admission status 
+
+System Administrator
+System administrator manages
+Entire platform 
+Universities 
+Students 
+Security 
+Reports 
+System maintenance 
+
+Guest User
+Guest users can
+Search universities 
+Browse scholarships 
+View university information 
+Guest users cannot submit applications until they register.
+
+2.4 Operating Environment
+The application will run on
+Client Side
+Google Chrome 
+Microsoft Edge 
+Mozilla Firefox 
+Safari 
+Devices
+Desktop 
+Laptop 
+Tablet 
+Mobile Phone 
+Server Side
+Node.js 
+Express.js 
+Firebase Firestore 
+Firebase Authentication 
+Firebase Storage 
+
+2.5 Design Constraints
+The following constraints apply.
+Internet connection is required. 
+Partner university APIs depend on university approval. 
+Student data must remain confidential. 
+Only verified universities can become partner universities. 
+Official university information must be updated regularly. 
+API communication must be secure. 
+
+2.6 User Documentation
+The system will provide
+User Guide 
+Frequently Asked Questions (FAQ) 
+Help Center 
+Contact Support 
+Privacy Policy 
+Terms & Conditions 
+
+2.7 Assumptions and Dependencies
+The project assumes that
+Students have internet access. 
+Universities publish accurate admission information. 
+Partner universities provide secure APIs. 
+Firebase services remain available. 
+Users provide correct academic information. 
+
+2.8 Business Workflow
+Student Registration        │        ▼Complete Student Profile        │        ▼Upload Academic Documents        │        ▼Search Universities        │        ▼Select University        │        ▼Check Admission Status        │        ▼Admission Open?     ┌────┴────┐     │         │    Yes        No     │         │     ▼         ▼Partner?    Show Closed ┌────┴─────┐ │          │Yes         No │          │ ▼          ▼Apply      Redirect tothrough    OfficialUniGuid    University │          Website ▼Application Submitted │ ▼University Reviews │ ▼Accepted / Rejected / Waitlisted │ ▼Student Receives Notification
+
+2.9 Development Methodology
+The project will follow the Agile Software Development Model.
+Development will be completed in iterative phases.
+Sprint 1
+Authentication & Student Module
+Sprint 2
+University Module
+Sprint 3
+Scholarship Module
+Sprint 4
+Admission Module
+Sprint 5
+University Dashboard
+Sprint 6
+Admin Dashboard
+Sprint 7
+API Integration
+Sprint 8
+Testing & Deployment
+
+2.10 Software Quality Assurance (SQA)
+Software quality will be maintained throughout development by:
+Requirement Reviews 
+Design Reviews 
+Code Reviews 
+Unit Testing 
+Integration Testing 
+System Testing 
+User Acceptance Testing (UAT) 
+Security Testing 
+Performance Testing 
+Regression Testing 
+Bug Tracking and Fixing 
+Each sprint will end only after all planned tests pass and critical defects are resolved.
+ection 3 – Specific Requirements (Functional Requirements)
+3.1 User Roles
+The system consists of four user roles:
+Guest 
+Student 
+University Administrator 
+System Administrator 
+
+3.2 Guest Module
+FR-001 User can view Home Page.
+FR-002 User can search universities without login.
+FR-003 User can view university details.
+FR-004 User can search scholarships.
+FR-005 User can view admission information.
+FR-006 User can register as a student.
+
+3.3 Authentication Module
+FR-007 Student Registration
+The system shall allow students to create an account using:
+Full Name 
+Email 
+Password 
+Phone Number 
+
+FR-008 Login
+The system shall authenticate users securely.
+
+FR-009 Logout
+The system shall allow users to logout securely.
+
+FR-010 Forgot Password
+The system shall allow users to reset passwords through Firebase Authentication.
+
+3.4 Student Profile Module
+FR-011 Create Student Profile
+The student shall be able to complete their profile.
+Information includes:
+Personal Information 
+Address 
+Date of Birth 
+Gender 
+Nationality 
+
+FR-012 Academic Information
+Student can enter
+Matric Marks 
+Intermediate Marks 
+Board 
+Passing Year 
+
+FR-013 Document Upload
+Student can upload
+Passport Size Photo 
+CNIC/B-Form 
+Matric Result 
+Intermediate Result 
+Documents will be stored securely in Firebase Storage.
+
+FR-014 Edit Profile
+Students can update profile information.
+
+3.5 University Module
+FR-015 Search Universities
+Students can search universities by
+Name 
+City 
+Province 
+Category 
+
+FR-016 Filter Universities
+Students can filter universities based on
+Public 
+Private 
+Medical 
+Engineering 
+Business 
+Computer Science 
+
+FR-017 University Details
+Each university page shall display
+University Name 
+Location 
+Ranking 
+Website 
+Offered Programs 
+Fee Structure 
+Scholarships 
+Admission Status 
+
+FR-018 Program Details
+Each program displays
+Degree Name 
+Duration 
+Eligibility 
+Credit Hours 
+
+3.6 Scholarship Module
+FR-019 Scholarship Listing
+Display all scholarships.
+
+FR-020 Scholarship Details
+Each scholarship contains
+Scholarship Name 
+Eligibility 
+Required CGPA/Marks 
+Benefits 
+Deadline 
+
+FR-021 Scholarship Search
+Students can search scholarships.
+
+3.7 Admission Module
+FR-022 Admission Listing
+Students can view
+Open Admissions 
+Closed Admissions 
+Upcoming Admissions 
+
+FR-023 Admission Details
+Display
+Admission Deadline 
+Entry Test 
+Eligibility 
+Merit Criteria 
+Required Documents 
+
+FR-024 Apply Now
+Student clicks Apply.
+System checks
+Partner University?
+YES → Internal Application
+NO → Redirect
+
+FR-025 Internal Admission Application
+Student submits
+Personal Information 
+Academic Information 
+Selected Program 
+Uploaded Documents 
+
+FR-026 Redirect Module
+If university is non-partner,
+System redirects student to official university admission portal.
+
+3.8 Partner University API Module
+FR-027 API Integration
+Partner universities provide secure APIs.
+UniGuid.pk sends
+Student Information 
+Program 
+Documents 
+Application Details 
+
+FR-028 API Response
+System receives
+Application Accepted
+OR
+Application Failed
+
+FR-029 API Logging
+Every API request shall be logged.
+
+3.9 Student Application Module
+FR-030 My Applications
+Student can view submitted applications.
+
+FR-031 Application Status
+Application Status
+Submitted 
+Under Review 
+Accepted 
+Rejected 
+Waitlisted 
+
+FR-032 Notifications
+Student receives notifications.
+
+3.10 University Dashboard
+FR-033 University Login
+University administrators login securely.
+
+FR-034 University Dashboard
+Dashboard displays
+Applications 
+Programs 
+Scholarships 
+Admission Statistics 
+
+FR-035 Manage Admissions
+University can
+Open
+Close
+Update Admissions
+
+FR-036 Manage Programs
+University can
+Add
+Update
+Delete Programs
+
+FR-037 Manage Scholarships
+University can
+Add
+Update
+Delete Scholarships
+
+FR-038 Review Applications
+University can
+View student applications
+
+FR-039 Admission Decision
+University can
+Accept
+Reject
+Waitlist
+applications.
+
+3.11 Admin Module
+FR-040 Admin Login
+
+FR-041 Manage Students
+
+FR-042 Manage Universities
+
+FR-043 Partner University Approval
+Admin approves universities for API integration.
+
+FR-044 Manage Admissions
+
+FR-045 Manage Scholarships
+
+FR-046 Manage Applications
+
+FR-047 Reports
+Generate
+Student Reports 
+University Reports 
+Admission Reports 
+
+FR-048 Notifications
+Admin sends announcements.
+
+3.12 Future AI Module
+FR-049 AI University Recommendation
+Recommend universities.
+
+FR-050 AI Scholarship Recommendation
+Recommend scholarships.
+
+
+3.14 Public Pages Module
+FR-051 About Us Page
+Requirement: The system shall display a static, publicly accessible About Us page presenting UniGuid.pk's mission, vision, and team, without requiring login.
+Acceptance Criteria:
+Page is reachable from the main navigation menu on every screen.
+Page content (mission, vision, team) is displayed in full without truncation.
+Page renders correctly on desktop, tablet, and mobile viewports.
+Quality Attribute – Performance (NFR-001): The page shall fully load within 3 seconds under normal network conditions.
+Quality Attribute – Usability (NFR-005): Content shall be organized under clearly labeled headings for readability.
+
+FR-052 Contact Us Page
+Requirement: The system shall provide a Contact Us page containing a contact form (Name, Email, Subject, Message) and the platform's official support email/phone, and shall confirm successful submission to the user.
+Acceptance Criteria:
+Form rejects submission if a required field is empty and shows an inline error message.
+A confirmation message or reference number is shown after successful submission.
+Submitted inquiries are stored and retrievable by the Admin.
+Quality Attribute – Performance (NFR-001): Form submission shall be acknowledged within 2 seconds.
+Quality Attribute – Security (NFR-004): All submitted input shall be validated and sanitized before storage.
+
+FR-053 FAQ Page
+Requirement: The system shall display a publicly accessible FAQ page listing common questions and answers relevant to guests and students, grouped by category.
+Acceptance Criteria:
+FAQ entries are grouped under at least one category (e.g., Admissions, Scholarships, Account).
+Each question can be expanded/collapsed independently.
+Quality Attribute – Usability (NFR-005): Users shall be able to locate a relevant FAQ entry within 2 clicks of arriving on the page.
+
+FR-054 Privacy Policy Page
+Requirement: The system shall display a Privacy Policy page describing what user data is collected, how it is used, and how it is protected, in accordance with applicable data-protection practice.
+Acceptance Criteria:
+Page states data collection purpose, storage location/provider, and user rights.
+Page includes the last-updated date of the policy.
+Quality Attribute – Compliance/Privacy (NFR-012): Content shall accurately reflect the data-handling practices described in Section 5.13 (Privacy).
+
+FR-055 Terms & Conditions Page
+Requirement: The system shall display a Terms & Conditions page describing the rules governing use of the platform, and shall require acceptance of these terms during student registration (see FR-007).
+Acceptance Criteria:
+Page is linked from the registration form.
+Registration form shall not proceed until the user has explicitly checked an "I agree to the Terms & Conditions" checkbox.
+Quality Attribute – Usability (NFR-005): Terms shall be presented in plain, unambiguous language avoiding legal jargon where possible.
+
+
+3.15 Extended Student Profile Module
+FR-056 Contact Information
+Requirement: The system shall allow an authenticated student to add and edit the following contact details: Mobile Number, Alternate Contact Number, WhatsApp Number, and Personal Email.
+Acceptance Criteria:
+Mobile Number and Alternate Contact Number shall be validated as an 11-digit Pakistani mobile format.
+Personal Email shall be validated for correct email format before saving.
+Changes are persisted immediately and reflected the next time the profile is viewed.
+Quality Attribute – Performance (NFR-001): Profile update shall be saved and confirmed within 2 seconds.
+Quality Attribute – Data Integrity (NFR-010): Invalid formats shall be rejected with a clear inline error message before saving.
+
+FR-057 Parent/Guardian Information
+Requirement: The system shall allow an authenticated student to add Father Name, Guardian Name, Guardian Occupation, and Guardian Contact Number to their profile.
+Acceptance Criteria:
+All four fields are optional but, if provided, contact number shall be validated for correct phone format.
+Saved values shall be displayed on the student's profile summary.
+Quality Attribute – Privacy (NFR-012): Guardian information shall only be visible to the student, the reviewing university, and the Admin.
+
+FR-058 Educational History
+Requirement: The system shall allow an authenticated student to record their School Name, College Name, Board, Passing Year, and Grades/Marks/GPA for each prior level of education.
+Acceptance Criteria:
+Passing Year shall be restricted to a valid 4-digit year not later than the current year.
+Grades/Marks shall be validated as a numeric percentage or GPA value within an accepted range.
+A student may add more than one educational record (e.g., Matric and Intermediate).
+Quality Attribute – Data Integrity (NFR-010): Numeric fields (year, marks/GPA) shall be validated before being saved.
+
+FR-059 Skills
+Requirement: The system shall allow an authenticated student to add, edit, and remove a list of technical and soft skills on their profile.
+Acceptance Criteria:
+Each skill entry is limited to 50 characters.
+Duplicate skill entries shall be prevented.
+Quality Attribute – Usability (NFR-005): Adding a skill shall require no more than 2 user actions (enter text, confirm).
+
+FR-060 Language Proficiency
+Requirement: The system shall allow an authenticated student to specify a proficiency level (Basic, Intermediate, Fluent, Native) for each language they select, including English and Urdu.
+Acceptance Criteria:
+Each language entry requires both a language name and a proficiency level before it can be saved.
+A student may add multiple languages.
+
+FR-061 Achievements
+Requirement: The system shall allow an authenticated student to add academic and extracurricular achievements, each with a title, description, and optional supporting document/certificate upload.
+Acceptance Criteria:
+Each achievement entry requires a title.
+Uploaded certificate files follow the same format/size rules defined in FR-013/FR-066.
+Quality Attribute – Reliability (NFR-003): Achievement records shall not be lost once saved, consistent with NFR-003.
+
+FR-062 Extracurricular Activities
+Requirement: The system shall allow an authenticated student to add co-curricular and extracurricular activities, each with an activity name, role/position, and duration.
+Acceptance Criteria:
+Each entry requires an activity name.
+Students may add, edit, or delete individual activity entries.
+
+FR-063 Profile Completion Progress
+Requirement: The system shall calculate and display, as a percentage, how much of the student's profile (personal, contact, academic, documents, skills) has been completed, updated in real time as the student edits their profile.
+Acceptance Criteria:
+Percentage shall recalculate immediately whenever a profile section is saved.
+Sections still requiring completion shall be visibly indicated to the student (e.g., a checklist).
+Quality Attribute – Performance (NFR-001): The completion percentage shall update within 1 second of a profile save.
+Quality Attribute – Usability (NFR-005): Incomplete sections shall be clearly flagged to guide the student.
+
+
+3.16 Extended Document Management Module
+FR-064 Upload Transcript
+Requirement: The system shall allow an authenticated student to upload their academic transcript as a PDF or image file, store it securely in Firebase Storage, and associate it with the student's profile.
+Acceptance Criteria:
+Only PDF, JPG, and PNG formats up to 5 MB shall be accepted.
+Upload progress shall be visibly indicated to the student.
+A successfully uploaded transcript shall be listed under the student's Documents section.
+Quality Attribute – Security (NFR-004): Uploaded transcripts shall be stored securely and accessible only to the student, the relevant university, and the Admin.
+Quality Attribute – Performance (NFR-001): Upload of a file up to 5 MB shall complete within 10 seconds under normal network conditions.
+
+FR-065 Upload Domicile
+Requirement: The system shall allow an authenticated student to upload their domicile certificate as a PDF or image file, store it securely, and associate it with the student's profile.
+Acceptance Criteria:
+Only PDF, JPG, and PNG formats up to 5 MB shall be accepted.
+The uploaded file shall be listed under the student's Documents section with an upload timestamp.
+Quality Attribute – Security (NFR-004): Domicile documents shall be stored securely, per Section 5.5 (Security).
+
+FR-066 Upload Other Documents
+Requirement: The system shall allow an authenticated student to upload additional supporting documents not covered by FR-013, FR-064, or FR-065, with a student-provided label for each document.
+Acceptance Criteria:
+Each uploaded document requires a non-empty label (e.g., "Character Certificate").
+Only PDF, JPG, and PNG formats up to 5 MB shall be accepted per file.
+Quality Attribute – Reliability (NFR-003): Uploaded documents shall remain retrievable and shall not be lost once confirmed as uploaded.
+
+FR-067 Document Verification Status
+Requirement: The system shall display a verification status of Pending, Verified, or Rejected for every document uploaded by the student, updated by an authorized reviewer (University Administrator or Admin).
+Acceptance Criteria:
+Newly uploaded documents default to "Pending" status.
+Status changes made by a reviewer shall be visible to the student within the same session or upon next page load.
+A "Rejected" status shall require the reviewer to provide a reason, visible to the student.
+Quality Attribute – Performance (NFR-001): Status updates shall be reflected to the student within 5 seconds of the reviewer's action.
+Quality Attribute – Usability (NFR-005): Status shall be shown using clear, color-coded labels (e.g., green = Verified, red = Rejected).
+
+
+3.17 Extended University Explorer Module
+FR-068 Departments
+Requirement: The system shall display the list of departments/faculties offered by each university on that university's details page.
+Acceptance Criteria:
+Each department listed shall link to its associated programs (see FR-018).
+Quality Attribute – Performance (NFR-001): Department list shall load together with the university details page within 3 seconds.
+
+FR-069 Merit Criteria
+Requirement: The system shall display the program-wise merit calculation criteria (e.g., weightage of Matric, Intermediate, and entry test marks) for each university program.
+Acceptance Criteria:
+Merit criteria shall specify the exact weightage percentage assigned to each component.
+Where a university has no published merit formula, the system shall display "Not Available" rather than leaving the section blank.
+
+FR-070 Campus Facilities
+Requirement: The system shall display the campus facilities available at each university, including Hostel, Library, Laboratories, Sports Complex, and Transport.
+Acceptance Criteria:
+Each facility shall be shown as available or not available for the given university.
+Quality Attribute – Usability (NFR-005): Facilities shall be displayed using recognizable icons alongside text labels.
+
+FR-071 University Gallery
+Requirement: The system shall display a photo gallery of campus images for each university, viewable by guests and students without login.
+Acceptance Criteria:
+Gallery shall support viewing at least 5 images per university where available.
+Images shall be displayed in a responsive grid or carousel layout.
+Quality Attribute – Performance (NFR-001): Gallery images shall be optimized so the page loads within 3 seconds on a standard broadband connection.
+
+FR-072 Save University
+Requirement: The system shall allow an authenticated student to bookmark (save) a university for later reference, and to view and remove saved universities from a dedicated "Saved Universities" list.
+Acceptance Criteria:
+A saved university shall persist across sessions until explicitly removed by the student.
+The save/unsave action shall be available directly from the university listing and details pages.
+Quality Attribute – Performance (NFR-001): The save/unsave action shall confirm within 1 second.
+
+FR-073 University Comparison
+Requirement: The system shall allow an authenticated student to select two or more universities and view a side-by-side comparison of fee structure, ranking, programs offered, and admission requirements.
+Acceptance Criteria:
+Comparison shall support at least 3 universities simultaneously.
+Comparison view shall clearly align equivalent attributes across all selected universities in rows.
+Quality Attribute – Performance (NFR-001): Comparison data for up to 3 universities shall load within 3 seconds.
+
+
+3.18 Extended Scholarship Module
+FR-074 Scholarship Eligibility Checker
+Requirement: The system shall allow an authenticated student to check their eligibility for a specific scholarship by automatically comparing the student's stored academic profile (marks/GPA) against the scholarship's published eligibility criteria, and shall display an "Eligible" or "Not Eligible" result with the reason.
+Acceptance Criteria:
+Eligibility result shall be calculated using the student's most recently saved academic data.
+If a student's profile is incomplete, the system shall prompt the student to complete the required fields before calculating eligibility.
+Quality Attribute – Performance (NFR-001): Eligibility result shall be displayed within 2 seconds of the request.
+Quality Attribute – Data Integrity (NFR-010): Eligibility logic shall use validated numeric data only.
+
+FR-075 Scholarship Deadlines
+Requirement: The system shall display the application deadline for each scholarship and shall visually flag scholarships whose deadline is within 7 days.
+Acceptance Criteria:
+Deadlines shall be displayed in a consistent date format (DD-MM-YYYY) across the platform.
+Scholarships past their deadline shall be labeled "Closed" and excluded from active listings by default.
+Quality Attribute – Reliability (NFR-003): Deadline flags shall be recalculated daily to remain accurate.
+
+FR-076 Save Scholarship
+Requirement: The system shall allow an authenticated student to bookmark (save) a scholarship for later application, and to view and remove saved scholarships from a dedicated "Saved Scholarships" list.
+Acceptance Criteria:
+A saved scholarship shall persist across sessions until explicitly removed by the student.
+The save/unsave action shall be available directly from the scholarship listing and details pages.
+Quality Attribute – Performance (NFR-001): The save/unsave action shall confirm within 1 second.
+
+
+3.19 Extended Admission Module
+FR-077 Admission Calendar
+Requirement: The system shall display a consolidated calendar view of all open, upcoming, and closed admissions across universities, showing key dates in chronological order.
+Acceptance Criteria:
+Calendar shall allow filtering by month and by university.
+Each calendar entry shall link directly to the corresponding admission details (FR-023).
+Quality Attribute – Performance (NFR-001): Calendar shall load within 3 seconds for the default (current month) view.
+Quality Attribute – Usability (NFR-005): Open, upcoming, and closed admissions shall be visually distinguished (e.g., by color).
+
+FR-078 Application Fee Payment
+Requirement: The system shall allow a student to pay the required application fee online through an integrated, secure payment gateway before an internal admission application (FR-025) is marked as submitted.
+Acceptance Criteria:
+Payment status shall be recorded as Pending, Paid, or Failed.
+An application shall not be forwarded to the university until payment status is "Paid".
+A payment receipt/reference number shall be issued to the student on successful payment.
+Quality Attribute – Security (NFR-004): Payment transactions shall be processed over an encrypted (HTTPS) connection and shall not store raw card data on UniGuid.pk servers.
+Quality Attribute – Reliability (NFR-003): A failed payment shall not create a duplicate or partially-submitted application record.
+
+FR-079 Application Submission Confirmation
+Requirement: The system shall generate and display a unique application reference number and confirmation message immediately after a student successfully submits an internal admission application.
+Acceptance Criteria:
+Reference number shall be unique per application.
+Confirmation shall also be recorded in the student's Application History (FR-030).
+Quality Attribute – Performance (NFR-001): Confirmation shall be displayed within 3 seconds of submission.
+Quality Attribute – Reliability (NFR-003): A confirmed submission shall never be lost, consistent with NFR-003.
+
+
+3.20 Entry Test Module
+FR-080 MDCAT Information
+Requirement: The system shall display Medical and Dental College Admission Test (MDCAT) information relevant to admissions, including purpose, applicable programs/universities, and an overview of test format.
+Acceptance Criteria:
+MDCAT information page is accessible without login.
+Information shall be kept consistent with the corresponding official testing body's published details.
+
+FR-081 ECAT Information
+Requirement: The system shall display Engineering College Admission Test (ECAT) information relevant to admissions, including purpose, applicable programs/universities, and an overview of test format.
+Acceptance Criteria:
+ECAT information page is accessible without login.
+Information shall be kept consistent with the corresponding official testing body's published details.
+
+FR-082 NTS Information
+Requirement: The system shall display National Testing Service (NTS) information relevant to admissions, including purpose, applicable programs/universities, and an overview of test format.
+Acceptance Criteria:
+NTS information page is accessible without login.
+Information shall be kept consistent with the corresponding official testing body's published details.
+
+FR-083 NUMS Information
+Requirement: The system shall display National University of Medical Sciences Entrance Test (NUMS) information relevant to admissions, including purpose, applicable programs/universities, and an overview of test format.
+Acceptance Criteria:
+NUMS information page is accessible without login.
+Information shall be kept consistent with the corresponding official testing body's published details.
+
+FR-084 LAT Information
+Requirement: The system shall display Law Admission Test (LAT) information relevant to admissions, including purpose, applicable programs/universities, and an overview of test format.
+Acceptance Criteria:
+LAT information page is accessible without login.
+Information shall be kept consistent with the corresponding official testing body's published details.
+
+FR-085 GAT Information
+Requirement: The system shall display Graduate Assessment Test (GAT) information relevant to admissions, including purpose, applicable programs/universities, and an overview of test format.
+Acceptance Criteria:
+GAT information page is accessible without login.
+Information shall be kept consistent with the corresponding official testing body's published details.
+
+FR-086 University-Specific Entry Tests
+Requirement: The system shall display entry test details specific to individual universities that conduct their own admission test, distinct from national tests (FR-080 to FR-085).
+Acceptance Criteria:
+Each university-specific test shall be linked from the relevant university's admission details page (FR-023).
+
+FR-087 Test Dates
+Requirement: The system shall display the announced registration opening date, registration closing date, and test date for each entry test listed in this module.
+Acceptance Criteria:
+Dates shall be displayed in a consistent format (DD-MM-YYYY) across all entry tests.
+Where an official date has not yet been announced, the system shall display "To Be Announced" rather than a blank field.
+Quality Attribute – Reliability (NFR-003): Displayed dates shall be reviewed and updated by the Admin within 48 hours of an official announcement.
+
+FR-088 Test Eligibility
+Requirement: The system shall display the eligibility criteria (e.g., required prior qualification, minimum marks, age limit) for each entry test.
+Acceptance Criteria:
+Eligibility criteria shall be presented as a bulleted list for readability.
+
+FR-089 Registration Links
+Requirement: The system shall provide a direct, working hyperlink to the official registration portal for each entry test.
+Acceptance Criteria:
+Each link shall open the official third-party registration website in a new browser tab.
+Broken links reported by users shall be corrected by the Admin within 48 hours.
+Quality Attribute – Reliability (NFR-003): Registration links shall be verified periodically to ensure they remain functional.
+
+FR-090 Test Syllabus & Preparation Resources
+Requirement: The system shall provide a syllabus outline and links to preparation resources (study guides, past papers, sample tests) for each entry test.
+Acceptance Criteria:
+Each test's syllabus shall be broken down by subject/section.
+At least one preparation resource link shall be provided per test where available.
+Quality Attribute – Usability (NFR-005): Syllabus content shall be organized under clear subject headings for easy scanning.
+
+
+3.21 Student Guidance Module
+FR-091 Career Guidance
+Requirement: The system shall provide guidance content, organized by field of interest, to help students choose a suitable career path.
+Acceptance Criteria:
+Content is accessible to both guests and authenticated students without additional restriction.
+
+FR-092 University Selection Guide
+Requirement: The system shall provide guidance content outlining the factors students should consider when selecting a university (e.g., ranking, fee, location, facilities).
+Acceptance Criteria:
+Content is accessible to both guests and authenticated students without additional restriction.
+
+FR-093 Degree Guidance
+Requirement: The system shall provide guidance content describing common degree programs, their scope, and career outcomes, to help students choose a degree program.
+Acceptance Criteria:
+Content is accessible to both guests and authenticated students without additional restriction.
+
+FR-094 Admission Process Guide
+Requirement: The system shall provide a step-by-step guide describing the end-to-end admission process on UniGuid.pk, from registration to application decision.
+Acceptance Criteria:
+Content is accessible to both guests and authenticated students without additional restriction.
+
+FR-095 Scholarship Guide
+Requirement: The system shall provide guidance content explaining how to search for, check eligibility for, and apply for scholarships through the platform.
+Acceptance Criteria:
+Content is accessible to both guests and authenticated students without additional restriction.
+
+FR-096 Admission FAQs
+Requirement: The system shall display a list of frequently asked questions specific to the admission process, distinct from the general FAQ page (FR-053).
+Acceptance Criteria:
+Content is accessible to both guests and authenticated students without additional restriction.
+
+FR-097 Admission Tips
+Requirement: The system shall display curated tips intended to help students improve their likelihood of successful admission (e.g., document readiness, deadline management).
+Acceptance Criteria:
+Content is accessible to both guests and authenticated students without additional restriction.
+
+
+3.22 Learning & Courses Module
+FR-098 Free Courses
+Requirement: The system shall provide a listing of free learning courses available to registered students, each showing title, provider, and duration.
+Acceptance Criteria:
+Course listing shall support filtering by category (e.g., Test Preparation, Study Skills, Soft Skills, Career Development).
+Quality Attribute – Performance (NFR-001): Course listing shall load within 3 seconds.
+
+FR-099 Admission Preparation Courses
+Requirement: The system shall provide courses specifically designed to help students prepare for university admissions and entry tests (FR-080 to FR-086).
+Acceptance Criteria:
+Each admission preparation course shall indicate which entry test(s) or admission stage it supports.
+
+FR-100 Study Skills Courses
+Requirement: The system shall provide courses covering effective study techniques (e.g., time management, note-taking, exam preparation).
+Acceptance Criteria:
+Each course entry shall include a short description of learning outcomes.
+
+FR-101 Soft Skills Courses
+Requirement: The system shall provide courses covering soft skills development (e.g., communication, teamwork, interview preparation).
+Acceptance Criteria:
+Each course entry shall include a short description of learning outcomes.
+
+FR-102 Career Development Courses
+Requirement: The system shall provide courses related to career development and professional growth.
+Acceptance Criteria:
+Each course entry shall include a short description of learning outcomes.
+
+FR-103 Course Details Page
+Requirement: The system shall display a details page for each course, including Course Title, Description, Duration, Instructor, and an enrollment option.
+Acceptance Criteria:
+All five data points shall be present for every course; missing values shall not display as blank but as "Not Specified".
+The enrollment action shall require the student to be logged in.
+Quality Attribute – Performance (NFR-001): Course details page shall load within 3 seconds.
+
+
+3.23 Extended Notification Module
+FR-104 Admission Notifications
+Requirement: The system shall notify a student when a new admission relevant to their saved or applied universities/programs opens, closes, or is updated.
+Acceptance Criteria:
+Notification shall include the university/program name and the nature of the update.
+Notification shall appear in the student's in-app notification list.
+Quality Attribute – Performance (NFR-001): Notifications shall be generated within 5 minutes of the triggering event.
+
+FR-105 Scholarship Notifications
+Requirement: The system shall notify a student when a new scholarship matching their profile, or a scholarship they have saved, becomes available or is updated.
+Acceptance Criteria:
+Notification shall include the scholarship name and a summary of the update.
+Quality Attribute – Performance (NFR-001): Notifications shall be generated within 5 minutes of the triggering event.
+
+FR-106 Deadline Reminders
+Requirement: The system shall automatically send a reminder notification to a student when an admission or scholarship deadline they are tracking (applied, saved, or eligible for) is within 7 days, and again within 24 hours.
+Acceptance Criteria:
+Reminders shall be sent at both the 7-day and 24-hour thresholds, not only once.
+Reminder shall clearly state the exact deadline date and the item it refers to.
+Quality Attribute – Reliability (NFR-003): Reminder scheduling shall run at least once daily to ensure no threshold is missed.
+
+FR-107 Application Status Notifications
+Requirement: The system shall notify a student immediately whenever their submitted application's status changes to Submitted, Accepted, Rejected, or Waitlisted.
+Acceptance Criteria:
+Notification shall state the new status and the university/program it relates to.
+Status notifications shall also be reflected in the student's Application History (FR-030/FR-031).
+Quality Attribute – Performance (NFR-001): Status change notifications shall be delivered within 5 minutes of the status update.
+Quality Attribute – Reliability (NFR-003): A status-change notification shall never be silently dropped.
+
+FR-108 General/System Notifications
+Requirement: The system shall allow the Admin to send general announcements or system notifications to all users or to a targeted user segment (e.g., all students, all universities).
+Acceptance Criteria:
+Admin shall be able to select the target audience before sending.
+Sent notifications shall be logged with timestamp and sender (per NFR-014, Audit & Logging).
+Quality Attribute – Security (NFR-004): Only authenticated Admin accounts shall be permitted to send system-wide notifications.
+
+
+3.24 Extended University Portal Module
+FR-109 University Profile Management
+Requirement: The system shall allow an authenticated University Administrator to create and update their university's public profile, including description, location, ranking, official website link, and gallery images (FR-071).
+Acceptance Criteria:
+Changes made by the University Administrator shall be reflected on the public university details page (FR-017) after Admin approval where required.
+Mandatory fields (name, location) shall not be left blank.
+Quality Attribute – Security (NFR-004): Only an authenticated and authorized University Administrator account shall be able to edit that university's profile.
+Quality Attribute – Performance (NFR-001): Profile updates shall save within 3 seconds.
+
+FR-110 University Reports
+Requirement: The system shall allow an authenticated University Administrator to generate reports on applications received, admission outcomes, and program-wise interest, filterable by date range.
+Acceptance Criteria:
+Reports shall be exportable in at least one common format (e.g., PDF or CSV).
+Report data shall reflect the state of the system at the time of generation.
+Quality Attribute – Performance (NFR-001): A report covering up to 12 months of data shall generate within 10 seconds.
+
+FR-111 University Analytics Dashboard
+Requirement: The system shall display an analytics dashboard to the University Administrator showing key metrics: total applications received, applications by status, and admission trends over time.
+Acceptance Criteria:
+Dashboard shall visually present at least one chart (e.g., bar or line) for trends over time.
+Metrics shall be scoped only to that university's own data.
+Quality Attribute – Performance (NFR-001): Dashboard shall load within 3 seconds under normal conditions.
+Quality Attribute – Privacy (NFR-012): A university shall never see analytics data belonging to another university.
+
+
+3.25 Extended Admin Portal Module
+FR-112 Partner University Management
+Requirement: The system shall allow the Admin to review, approve, or reject university requests for Partner University status, which enables Partner University API Integration (Section 3.8).
+Acceptance Criteria:
+A university's status shall be clearly shown as Pending, Approved, or Rejected.
+Only Approved partner universities shall be eligible for API-based application submission (FR-027).
+Quality Attribute – Security (NFR-004): Only authenticated Admin accounts shall be able to change a university's partner status.
+
+FR-113 Payment Management
+Requirement: The system shall allow the Admin to view and monitor all application fee payment transactions (FR-078), including status (Pending, Paid, Failed) and associated student and application.
+Acceptance Criteria:
+Admin shall be able to filter transactions by date range and status.
+Admin shall be able to view a payment's reference number without viewing sensitive card details.
+Quality Attribute – Security (NFR-004): Raw payment card data shall never be stored or displayed within the Admin portal.
+
+FR-114 Document Verification (Admin)
+Requirement: The system shall allow the Admin to review student-uploaded documents (Section 3.16) and set their verification status to Verified or Rejected, providing a reason when rejecting.
+Acceptance Criteria:
+A rejection shall require a non-empty reason visible to the student.
+Verification actions shall update the status shown to the student (FR-067) without delay.
+Quality Attribute – Performance (NFR-001): Verification status changes shall be visible to the student within 5 seconds.
+
+FR-115 Feedback Management
+Requirement: The system shall allow the Admin to view and respond to feedback and complaints submitted through the Contact Us page (FR-052) or in-app feedback forms.
+Acceptance Criteria:
+Each feedback item shall show submitter, date, subject, and message.
+Admin shall be able to mark a feedback item as Resolved or Open.
+
+FR-116 System Settings
+Requirement: The system shall allow the Admin to configure system-wide settings, including maintenance mode, supported entry test list (Section 3.20), and general announcement banners.
+Acceptance Criteria:
+Changes to system settings shall take effect without requiring a full system redeployment.
+Only the Admin role shall have access to this page.
+Quality Attribute – Security (NFR-004): Access to System Settings shall be restricted to the Admin role only, enforced by role-based access control.
+
+FR-117 Admin Analytics Dashboard
+Requirement: The system shall display a platform-wide analytics dashboard to the Admin, showing user growth, total applications, admission trends, and active partner universities.
+Acceptance Criteria:
+Dashboard shall present at least one visual chart summarizing trends over the past 12 months.
+Data shown shall be refreshed at least once every 24 hours.
+Quality Attribute – Performance (NFR-001): Dashboard shall load within 3 seconds under normal conditions.
+
+
+3.26 Utility Features Module
+FR-118 Merit Calculator
+Requirement: The system shall allow a student to calculate an estimated aggregate merit score by entering Matric marks, Intermediate marks, and (where applicable) entry test score, using the university-specific weightage defined in FR-069.
+Acceptance Criteria:
+Calculator shall reject non-numeric or out-of-range input with a clear error message.
+Result shall display the calculated aggregate percentage and, where possible, an indicative comparison against the university's historical merit.
+Quality Attribute – Performance (NFR-001): Calculation result shall be displayed within 1 second of submitting valid input.
+Quality Attribute – Data Integrity (NFR-010): The calculator shall clearly label its result as an estimate, not an official merit position.
+
+FR-119 Scholarship Eligibility Calculator
+Requirement: The system shall allow a student to check eligibility for a scholarship by manually entering academic criteria, independent of a saved profile, and shall display an eligibility result with explanation.
+Acceptance Criteria:
+Calculator shall function for guests as well as logged-in students.
+Result shall state which specific criterion (if any) was not met.
+Quality Attribute – Performance (NFR-001): Result shall be displayed within 2 seconds of submission.
+
+FR-120 University Reviews & Ratings
+Requirement: The system shall allow an authenticated student to submit a star rating (1-5) and an optional written review for a university, and shall display the average rating and reviews on that university's details page.
+Acceptance Criteria:
+A student shall be limited to one active review per university.
+Reviews containing prohibited content shall be flagged for Admin moderation before publishing.
+Quality Attribute – Security (NFR-004): Only authenticated students shall be permitted to submit a review.
+Quality Attribute – Reliability (NFR-003): Average rating shall recalculate immediately whenever a review is added, edited, or removed.
+
+FR-121 Favorite Universities
+Requirement: The system shall allow an authenticated student to mark and unmark universities as favorites for quick access from their dashboard.
+Acceptance Criteria:
+Favorited universities shall appear in a dedicated dashboard widget/list.
+This feature is functionally equivalent to and shall share the same data as "Save University" (FR-072).
+
+FR-122 Favorite Scholarships
+Requirement: The system shall allow an authenticated student to mark and unmark scholarships as favorites for quick access from their dashboard.
+Acceptance Criteria:
+Favorited scholarships shall appear in a dedicated dashboard widget/list.
+This feature is functionally equivalent to and shall share the same data as "Save Scholarship" (FR-076).
+
+FR-123 Interactive Campus Map (Future Enhancement)
+Requirement: In a future release, the system may provide an interactive map showing key locations within a university campus (e.g., admission office, hostels, academic blocks).
+Acceptance Criteria:
+Not applicable in the current release; included for future planning only.
+
+FR-124 AI Chatbot (Future Enhancement)
+Requirement: In a future release, the system may provide an AI-powered chatbot capable of answering common student queries about admissions, scholarships, and platform usage in natural language.
+Acceptance Criteria:
+Not applicable in the current release; included for future planning only.
+
+3.13 Functional Requirement Summary
+Module
+Requirements
+Guest
+FR-001 – FR-006
+Authentication
+FR-007 – FR-010
+Student Profile
+FR-011 – FR-014
+Universities
+FR-015 – FR-018
+Scholarships
+FR-019 – FR-021
+Admissions
+FR-022 – FR-026
+Partner API
+FR-027 – FR-029
+Applications
+FR-030 – FR-032
+University Dashboard
+FR-033 – FR-039
+Admin Dashboard
+FR-040 – FR-048
+AI Features
+FR-049 – FR-050
+Public Pages Module
+FR-051 – FR-055
+Extended Student Profile Module
+FR-056 – FR-063
+Extended Document Management Module
+FR-064 – FR-067
+Extended University Explorer Module
+FR-068 – FR-073
+Extended Scholarship Module
+FR-074 – FR-076
+Extended Admission Module
+FR-077 – FR-079
+Entry Test Module
+FR-080 – FR-090
+Student Guidance Module
+FR-091 – FR-097
+Learning & Courses Module
+FR-098 – FR-103
+Extended Notification Module
+FR-104 – FR-108
+Extended University Portal Module
+FR-109 – FR-111
+Extended Admin Portal Module
+FR-112 – FR-117
+Utility Features Module
+FR-118 – FR-124
+Section 4 – External Interface Requirements
+4.1 User Interface Requirements
+The user interface shall be modern, responsive, simple, and easy to use. The application shall support desktop, tablet, and mobile devices.
+The interface will be developed using React.js and Tailwind CSS.
+
+4.2 Student Interface
+Page 1 – Landing (Home) Page
+The Home Page shall include:
+Navigation Bar 
+Hero Banner 
+Search University 
+Featured Universities 
+Featured Scholarships 
+Admission Updates 
+Why Choose UniGuid.pk 
+Footer 
+
+Page 2 – Login
+Features
+Email 
+Password 
+Remember Me 
+Forgot Password 
+Login Button 
+Register Link 
+
+Page 3 – Registration
+Fields
+Full Name 
+Email 
+Phone Number 
+Password 
+Confirm Password 
+Register Button 
+
+Page 4 – Student Dashboard
+Dashboard Cards
+Total Applications 
+Open Admissions 
+Saved Universities 
+Notifications 
+Profile Completion 
+Sidebar
+Dashboard 
+My Profile 
+Universities 
+Scholarships 
+Admissions 
+My Applications 
+Notifications 
+Settings 
+Logout 
+
+Page 5 – Student Profile
+Sections
+Personal Information 
+Academic Information 
+Contact Information 
+Address 
+Documents 
+Buttons
+Save 
+Edit 
+Upload Document 
+
+Page 6 – University Listing
+Features
+Search Bar 
+Filters 
+University Cards 
+Each card shows
+Logo 
+Name 
+City 
+Ranking 
+Admission Status 
+Apply Button 
+
+Page 7 – University Details
+Displays
+About University 
+Departments 
+Degree Programs 
+Fee Structure 
+Scholarships 
+Eligibility 
+Admission Deadline 
+Required Documents 
+Apply Now 
+
+Page 8 – Scholarship Page
+Shows
+Scholarship Name 
+Provider 
+Eligibility 
+Deadline 
+Amount 
+Apply Button (if available) 
+
+Page 9 – Admission Page
+Displays
+Admission Status 
+Deadline 
+Programs 
+Eligibility 
+Required Documents 
+Button
+Apply Now
+
+Page 10 – My Applications
+Displays
+University Name 
+Program 
+Submission Date 
+Current Status 
+
+Page 11 – Notifications
+Displays
+Admission Updates 
+Scholarship Updates 
+University Messages 
+Application Decisions 
+
+4.3 University Interface
+University Login
+
+University Dashboard
+Shows
+Applications Received 
+Open Admissions 
+Scholarships 
+Programs 
+Statistics 
+
+Manage Programs
+Add Program 
+Edit Program 
+Delete Program 
+
+Manage Scholarships
+Add Scholarship 
+Edit Scholarship 
+Delete Scholarship 
+
+Manage Admissions
+Open Admission 
+Close Admission 
+Edit Admission 
+
+Review Applications
+Displays
+Student Profile 
+Documents 
+Marks 
+Status 
+Buttons
+Accept 
+Reject 
+Waitlist 
+
+4.4 Administrator Interface
+Admin Dashboard
+Statistics
+Students 
+Universities 
+Applications 
+Scholarships 
+
+Manage Students
+View 
+Update 
+Delete 
+
+Manage Universities
+Add 
+Edit 
+Delete 
+Partner Approval 
+
+Manage Applications
+View 
+Search 
+Filter 
+Export 
+
+Manage Scholarships
+Add 
+Edit 
+Delete 
+
+Reports
+Student Report 
+University Report 
+Admission Report 
+
+4.5 Software Interfaces
+The application shall integrate with:
+Firebase Authentication 
+Firebase Firestore 
+Firebase Storage 
+REST APIs 
+Partner University APIs 
+
+4.6 Communication Interfaces
+The system shall communicate using:
+HTTPS 
+REST API 
+JSON 
+Partner University APIs shall exchange:
+Student Information 
+Academic Information 
+Selected Program 
+Documents 
+Application Status 
+
+4.7 Hardware Requirements
+Client
+Smartphone 
+Tablet 
+Laptop 
+Desktop 
+
+Server
+Cloud-hosted backend with internet connectivity.
+
+4.8 Security Interface Requirements
+The system shall:
+Authenticate every user before accessing protected pages. 
+Encrypt passwords using Firebase Authentication. 
+Protect all API endpoints. 
+Validate all user inputs. 
+Restrict access based on user roles. 
+Store uploaded files securely in Firebase Storage. 
+Use HTTPS for secure communication. 
+
+4.9 Error Handling
+The system shall display user-friendly messages such as:
+Invalid email or password 
+University not found 
+Admission closed 
+File upload failed 
+Application submitted successfully 
+Network connection error 
+API unavailable 
+Unauthorized access 
+
+4.10 Accessibility Requirements
+The interface shall:
+Be responsive on all screen sizes. 
+Use readable fonts. 
+Provide clear navigation. 
+Use accessible color contrast. 
+Support keyboard navigation where applicable. 
+
+Review & Improvement Suggestions
+This section is good, but I recommend one important improvement before we continue.
+Since your project is UniGuid.pk, we should avoid thinking only in terms of pages. A real system should also define system interfaces. For example:
+Student → UniGuid.pk 
+Admin → UniGuid.pk 
+University → UniGuid.pk 
+Partner University API ↔ UniGuid.pk 
+Firebase ↔ UniGuid.pk 
+Adding these interaction diagrams will make your SRS look much more professional and will help when we create the architecture and sequence diagrams later.
+Next Section
+The next section will be Section 5 – Non-Functional Requirements, where we'll define:
+Performance 
+Reliability 
+Availability 
+Security 
+Scalability 
+Maintainability 
+Usability 
+Portability 
+Backup & Recovery 
+Software Quality Attributes 
+This section is especially important because it directly supports your Software Quality Assurance (SQA) requirements.
+Section 5 – Non-Functional Requirements (NFR)
+5.1 Overview
+Non-functional requirements define the quality attributes of UniGuid.pk. These requirements ensure that the system is secure, reliable, scalable, maintainable, and easy to use while supporting students, universities, and administrators.
+
+5.2 Performance Requirements (NFR-001)
+The system shall provide fast and responsive performance.
+Requirements
+Page loading time should not exceed 3 seconds under normal conditions. 
+Search results should appear within 2 seconds. 
+Student login should complete within 2 seconds. 
+University search should support filtering without noticeable delays. 
+The system should efficiently handle multiple users simultaneously. 
+
+5.3 Availability (NFR-002)
+The system shall remain available whenever users need it.
+Requirements
+System availability target: 99% during normal operation. 
+Firebase services shall provide continuous cloud availability. 
+Scheduled maintenance shall be announced in advance. 
+
+5.4 Reliability (NFR-003)
+The system shall operate consistently without data loss.
+Requirements
+Student applications shall never be lost after successful submission. 
+Uploaded documents shall remain securely stored. 
+The database shall maintain data integrity. 
+System failures shall not corrupt application records. 
+
+5.5 Security (NFR-004)
+Security is one of the highest priorities.
+The system shall
+Use Firebase Authentication for user login. 
+Protect all authenticated routes. 
+Restrict access based on user roles. 
+Store passwords securely through Firebase Authentication. 
+Use HTTPS for all communication. 
+Validate all user inputs. 
+Prevent unauthorized access. 
+Store uploaded documents securely in Firebase Storage. 
+Maintain activity logs for sensitive operations. 
+
+5.6 Usability (NFR-005)
+The application shall be easy to use for students with different levels of technical knowledge.
+Requirements
+Simple navigation 
+Responsive layout 
+Consistent design 
+Clear error messages 
+Easy-to-understand forms 
+Mobile-friendly interface 
+
+5.7 Maintainability (NFR-006)
+The system shall be easy to maintain and update.
+Requirements
+Modular architecture 
+Reusable React components 
+Organized project structure 
+Proper code documentation 
+Version control using Git 
+Easy addition of new universities and scholarships 
+
+5.8 Scalability (NFR-007)
+The system shall support future growth.
+Future scalability includes
+More universities 
+More students 
+Additional scholarship providers 
+More partner university APIs 
+Mobile application integration 
+AI recommendation services 
+
+5.9 Portability (NFR-008)
+The application shall run on
+Windows 
+Linux 
+macOS 
+Android browsers 
+iPhone browsers 
+without modification.
+
+5.10 Compatibility (NFR-009)
+Supported browsers
+Google Chrome 
+Microsoft Edge 
+Mozilla Firefox 
+Safari 
+Supported devices
+Desktop 
+Laptop 
+Tablet 
+Mobile Phone 
+
+5.11 Data Integrity (NFR-010)
+The system shall ensure that
+Student data remains accurate. 
+University information remains consistent. 
+Duplicate applications are prevented where applicable. 
+Database transactions complete successfully. 
+
+5.12 Backup and Recovery (NFR-011)
+Requirements
+Cloud database backups shall be available. 
+Uploaded files shall remain recoverable where supported. 
+Recovery procedures shall minimize data loss. 
+
+5.13 Privacy (NFR-012)
+The system shall protect user privacy.
+Requirements
+Student personal information shall remain confidential. 
+Only authorized users may access application data. 
+Universities shall only access applications submitted to their institution. 
+The Admin shall have controlled access for system management purposes. 
+
+5.14 Accessibility (NFR-013)
+The system shall
+Support responsive design. 
+Use readable fonts. 
+Maintain sufficient color contrast. 
+Be usable on small mobile screens. 
+Provide clear labels and instructions. 
+
+5.15 Audit & Logging (NFR-014)
+The system shall maintain logs for important actions.
+Examples include:
+Student registration 
+Login attempts 
+Profile updates 
+Application submissions 
+University admission decisions 
+Admin actions 
+These logs help with troubleshooting, monitoring, and accountability.
+
+5.16 Quality Attributes Summary
+Requirement ID
+Quality Attribute
+NFR-001
+Performance
+NFR-002
+Availability
+NFR-003
+Reliability
+NFR-004
+Security
+NFR-005
+Usability
+NFR-006
+Maintainability
+NFR-007
+Scalability
+NFR-008
+Portability
+NFR-009
+Compatibility
+NFR-010
+Data Integrity
+NFR-011
+Backup & Recovery
+NFR-012
+Privacy
+NFR-013
+Accessibility
+NFR-014
+Audit & Logging
+
+Review
+Sections 1–5 now provide a strong foundation for the SRS.
+The next section is critical:
+Section 6 – System Architecture & Database Design
+This is where we will define:
+Overall system architecture 
+React frontend architecture 
+Node.js backend architecture 
+Firebase architecture 
+Firestore collections 
+Database schema 
+Relationships between collections 
+User roles and permissions 
+Project folder structure 
+API architecture 
+Complete ER Diagram 
+System architecture diagrams 
+This section will become the blueprint we use when we start coding the project. It is one of the most important parts of the SRS because it directly guides implementation.
+Section 6 – System Architecture and Database Design
+6.1 Introduction
+This section describes the overall architecture of UniGuid.pk, including the system structure, major components, data storage, communication between components, user roles, and database design. The architecture is designed to ensure scalability, maintainability, security, and ease of future enhancement.
+
+6.2 System Architecture
+UniGuid.pk follows a three-tier architecture consisting of the Presentation Layer, Application Layer, and Data Layer.
+Presentation Layer (Frontend)
+Developed using:
+React.js 
+Tailwind CSS 
+Responsibilities:
+Display user interface 
+Collect user input 
+Validate basic form data 
+Send requests to backend APIs 
+Display responses 
+
+Application Layer (Backend)
+Developed using:
+Node.js 
+Express.js 
+Responsibilities:
+Business logic 
+Authentication 
+Authorization 
+API handling 
+University API integration 
+Notification processing 
+File management 
+
+Data Layer
+Developed using:
+Firebase Firestore 
+Firebase Authentication 
+Firebase Storage 
+Responsibilities:
+Store users 
+Store universities 
+Store scholarships 
+Store applications 
+Store uploaded documents 
+Store notifications 
+
+6.3 High-Level Architecture
+                Student                   │                   ▼            React Frontend                   │                   ▼          Node.js + Express API                   │      ┌────────────┼────────────┐      │            │            │      ▼            ▼            ▼ Firebase      Firebase     FirebaseAuth         Firestore      Storage      │      ▼Partner University APIs      │      ▼University Admission System
+
+6.4 User Roles
+The system contains four user roles.
+Guest
+Permissions
+Browse universities 
+Browse scholarships 
+View admission information 
+Cannot
+Apply for admission 
+Upload documents 
+
+Student
+Permissions
+Register 
+Login 
+Manage profile 
+Upload documents 
+Search universities 
+Search scholarships 
+Apply for admission 
+Track applications 
+Receive notifications 
+
+University Administrator
+Permissions
+Manage university profile 
+Manage programs 
+Manage scholarships 
+Open/Close admissions 
+Review applications 
+Accept/Reject applications 
+
+System Administrator
+Permissions
+Manage students 
+Manage universities 
+Approve partner universities 
+Manage applications 
+Manage reports 
+Manage notifications 
+Monitor system 
+
+6.5 Firestore Collections
+The following collections will be used.
+Users
+Stores
+Student 
+University Admin 
+System Admin 
+Fields
+userId 
+fullName 
+email 
+phone 
+role 
+createdAt 
+
+Students
+Fields
+studentId 
+userId 
+fatherName 
+CNIC/B-Form 
+address 
+gender 
+dateOfBirth 
+
+AcademicRecords
+Fields
+recordId 
+studentId 
+matricMarks 
+intermediateMarks 
+board 
+passingYear 
+
+Documents
+Fields
+documentId 
+studentId 
+photo 
+CNIC 
+matricResult 
+intermediateResult 
+
+Universities
+Fields
+universityId 
+universityName 
+city 
+province 
+category 
+website 
+logo 
+partnerStatus 
+apiURL (if partner) 
+
+Departments
+Fields
+departmentId 
+universityId 
+departmentName 
+
+Programs
+Fields
+programId 
+departmentId 
+degreeName 
+duration 
+fee 
+eligibility 
+
+Scholarships
+Fields
+scholarshipId 
+universityId 
+scholarshipName 
+eligibility 
+amount 
+deadline 
+
+Admissions
+Fields
+admissionId 
+universityId 
+programId 
+admissionStatus 
+deadline 
+eligibility 
+
+Applications
+Fields
+applicationId 
+studentId 
+universityId 
+programId 
+status 
+submissionDate 
+
+Notifications
+Fields
+notificationId 
+userId 
+title 
+message 
+createdAt 
+isRead 
+
+6.6 Firebase Storage Structure
+storage/students/    studentID/        photo.jpg        cnic.pdf        matric.pdf        intermediate.pdfuniversities/    universityLogo.png
+
+6.7 Role-Based Access Control (RBAC)
+Module
+Guest
+Student
+University
+Admin
+View Universities
+✔
+✔
+✔
+✔
+Register/Login
+✔
+✔
+✔
+✔
+Apply for Admission
+✘
+✔
+✘
+✘
+Manage Admissions
+✘
+✘
+✔
+✔
+Manage Scholarships
+✘
+✘
+✔
+✔
+View Applications
+✘
+Own Only
+Own University
+All
+Manage Users
+✘
+✘
+✘
+✔
+
+6.8 Security Rules
+The system shall ensure:
+Students can only access their own profiles and applications. 
+University administrators can only manage their own university's data. 
+Administrators have full system access. 
+All requests require authentication for protected resources. 
+Uploaded files are only accessible to authorized users. 
+
+6.9 Data Flow Overview
+Student   │   ▼Login   │   ▼Complete Profile   │   ▼Upload Documents   │   ▼Search University   │   ▼Apply   │   ▼Application Stored   │   ▼Partner? ┌────┴─────┐ │          │Yes         No │          │ ▼          ▼Send API    Redirect │ ▼University │ ▼Decision │ ▼Notification
+
+6.10 Architecture Principles
+The architecture follows these principles:
+Separation of Concerns 
+Modular Design 
+Reusable Components 
+Secure Authentication 
+Role-Based Authorization 
+Scalable Cloud Storage 
+RESTful API Design 
+Maintainability 
+Extensibility 
+High Availability
+Section 7 – Database Design
+7.1 Introduction
+The database is the core component of UniGuid.pk. It stores all information related to students, universities, programs, scholarships, admissions, applications, notifications, and user accounts.
+UniGuid.pk uses Firebase Firestore, a cloud-based NoSQL database that provides scalability, real-time synchronization, and secure data storage.
+
+7.2 Database Objectives
+The database shall:
+Store student information securely. 
+Maintain university records. 
+Store academic programs. 
+Manage scholarship information. 
+Store admission announcements. 
+Store student applications. 
+Store uploaded documents. 
+Store notifications. 
+Support future expansion. 
+
+7.3 Firestore Collections
+Collection 1: Users
+Purpose:Stores authentication and user role information.
+Field
+Type
+Description
+userId
+String
+Unique User ID
+fullName
+String
+Full Name
+email
+String
+Email Address
+phone
+String
+Phone Number
+role
+String
+Student / University / Admin
+profileCompleted
+Boolean
+Profile Status
+createdAt
+Timestamp
+Registration Date
+
+Collection 2: Students
+Purpose:Stores student profile information.
+Field
+Type
+studentId
+String
+userId
+String
+fatherName
+String
+CNIC
+String
+gender
+String
+DOB
+Date
+address
+String
+city
+String
+province
+String
+
+Collection 3: Academic Records
+Purpose:Stores educational information.
+Field
+Type
+recordId
+String
+studentId
+String
+matricBoard
+String
+matricMarks
+Number
+matricYear
+Number
+interBoard
+String
+interMarks
+Number
+interYear
+Number
+
+Collection 4: Student Documents
+Purpose:Stores uploaded documents.
+Field
+Type
+documentId
+String
+studentId
+String
+profilePhoto
+URL
+CNICCopy
+URL
+matricResult
+URL
+intermediateResult
+URL
+
+Collection 5: Universities
+Purpose:Stores university information.
+Field
+Type
+universityId
+String
+universityName
+String
+logo
+URL
+category
+Public / Private
+city
+String
+province
+String
+address
+String
+website
+String
+partnerStatus
+Boolean
+apiEndpoint
+String
+email
+String
+phone
+String
+
+Collection 6: Departments
+Field
+Type
+departmentId
+String
+universityId
+String
+departmentName
+String
+
+Collection 7: Programs
+Field
+Type
+programId
+String
+departmentId
+String
+universityId
+String
+degreeName
+String
+duration
+String
+totalCreditHours
+Number
+eligibility
+String
+feePerSemester
+Number
+
+Collection 8: Scholarships
+Field
+Type
+scholarshipId
+String
+universityId
+String
+scholarshipName
+String
+description
+String
+eligibility
+String
+minimumMarks
+Number
+amount
+Number
+deadline
+Date
+
+Collection 9: Admissions
+Field
+Type
+admissionId
+String
+universityId
+String
+programId
+String
+admissionStatus
+Open / Closed
+startDate
+Date
+endDate
+Date
+eligibility
+String
+requiredDocuments
+Array
+
+Collection 10: Applications
+Purpose:Stores every student application.
+Field
+Type
+applicationId
+String
+studentId
+String
+universityId
+String
+programId
+String
+status
+Submitted / Under Review / Accepted / Rejected / Waitlisted
+paymentStatus
+Pending / Paid
+submissionDate
+Timestamp
+
+Collection 11: Notifications
+Field
+Type
+notificationId
+String
+userId
+String
+title
+String
+message
+String
+isRead
+Boolean
+createdAt
+Timestamp
+
+Collection 12: Partner APIs
+Purpose:Stores partner university API details.
+Field
+Type
+partnerId
+String
+universityId
+String
+apiURL
+String
+apiKey
+String
+status
+Active / Inactive
+
+7.4 Collection Relationships
+Users│├── Students│      ││      ├── AcademicRecords│      ├── Documents│      └── Applications│Universities│├── Departments│      ││      └── Programs│├── Scholarships├── Admissions└── Partner APIs
+
+7.5 Data Validation Rules
+The system shall validate:
+Email format 
+Phone number format 
+Required fields 
+Password strength 
+Duplicate email accounts 
+Duplicate applications (same student, same university, same program while admission is open) 
+File type (PDF/JPG/PNG) 
+Maximum upload size 
+
+7.6 Firebase Security Rules
+The system shall ensure:
+Students can only access their own data. 
+Universities can only access applications submitted to their university. 
+Admin has full access. 
+Guests cannot access protected collections. 
+Uploaded files require authentication. 
+
+7.7 Data Retention
+Student profiles remain until the account is deleted. 
+Applications are retained for historical records. 
+Notifications may be archived after a defined period. 
+Deleted universities should not remove historical application records. 
+
+7.8 Database Indexing
+Indexes should be created for commonly searched fields:
+universityName 
+city 
+category 
+programId 
+scholarshipName 
+admissionStatus 
+studentId 
+applicationStatus 
+This improves search performance.
+
+7.9 Backup & Recovery
+Firestore data should be backed up periodically. 
+Critical records must be recoverable. 
+Uploaded files in Firebase Storage should be protected against accidental deletion where possible. 
+Section 8 – API Specification
+8.1 Introduction
+The UniGuid.pk system communicates through RESTful APIs between the React frontend, Node.js backend, Firebase services, and partner university systems.
+The APIs are responsible for authentication, user management, admissions, scholarships, applications, notifications, and partner university integration.
+
+8.2 API Architecture
+React Frontend      │      ▼Express REST API      │ ┌────┼─────┐ │    │     │ ▼    ▼     ▼Firebase AuthFirestoreFirebase Storage      │      ▼Partner University APIs
+
+8.3 Authentication APIs
+API-001 Register Student
+Method
+POST
+Endpoint
+/api/auth/register
+Request
+{ fullName, email, password, phone}
+Response
+{ success, userId, message}
+
+API-002 Login
+POST
+/api/auth/login
+Request
+emailpassword
+Response
+JWT TokenUser Role
+
+API-003 Logout
+POST
+/api/auth/logout
+
+API-004 Reset Password
+POST
+/api/auth/reset-password
+
+8.4 Student APIs
+API-005 Create Student Profile
+POST
+/api/student/profile
+
+API-006 Get Student Profile
+GET
+/api/student/profile/:id
+
+API-007 Update Student Profile
+PUT
+/api/student/profile/:id
+
+API-008 Upload Documents
+POST
+/api/student/documents
+Documents
+Photo 
+CNIC/B-Form 
+Matric Result 
+Intermediate Result 
+
+8.5 University APIs
+API-009 Get Universities
+GET
+/api/universities
+Supports filters
+City 
+Province 
+Category 
+Search 
+
+API-010 Get University Details
+GET
+/api/university/:id
+
+API-011 Get Programs
+GET
+/api/programs/:universityId
+
+API-012 Search Universities
+GET
+/api/search
+
+8.6 Scholarship APIs
+API-013 Get Scholarships
+GET
+/api/scholarships
+
+API-014 Scholarship Details
+GET
+/api/scholarship/:id
+
+8.7 Admission APIs
+API-015 Get Admissions
+GET
+/api/admissions
+
+API-016 Admission Details
+GET
+/api/admission/:id
+
+API-017 Apply Admission
+POST
+/api/applications
+Request
+Student IDUniversity IDProgram IDDocuments
+Response
+Application IDStatusMessage
+
+8.8 Application APIs
+API-018 Get My Applications
+GET
+/api/my-applications
+
+API-019 Application Details
+GET
+/api/application/:id
+
+API-020 Update Status
+PUT
+/api/application/status
+University only
+
+8.9 University Dashboard APIs
+API-021 University Login
+POST
+/api/university/login
+
+API-022 Manage Programs
+POST
+PUT
+DELETE
+/api/programs
+
+API-023 Manage Scholarships
+POST
+PUT
+DELETE
+/api/scholarships
+
+API-024 Manage Admissions
+POST
+PUT
+DELETE
+/api/admissions
+
+API-025 Review Applications
+GET
+/api/university/applications
+
+8.10 Admin APIs
+API-026 Manage Students
+
+API-027 Manage Universities
+
+API-028 Partner University Approval
+
+API-029 Reports
+
+API-030 Notifications
+
+8.11 Partner University Integration
+If
+Partner = TRUE
+Flow
+Student↓UniGuid↓Partner API↓University Database↓Response↓Student Notification
+
+8.12 Non-Partner University Flow
+If
+Partner = FALSE
+Flow
+Student↓University Details↓Click Apply↓Redirect↓Official University Website
+
+8.13 API Security
+All APIs shall
+Require HTTPS 
+Validate request data 
+Authenticate protected endpoints 
+Authorize users by role 
+Return standardized error responses 
+Log important requests 
+
+8.14 Standard Response Format
+Success
+{  "success": true,  "message": "Operation completed successfully.",  "data": {}}
+Error
+{  "success": false,  "message": "Invalid request.",  "error": {}}
+
+8.15 HTTP Status Codes
+Code
+Meaning
+200
+Success
+201
+Created
+400
+Bad Request
+401
+Unauthorized
+403
+Forbidden
+404
+Not Found
+409
+Conflict
+500
+Internal Server Error
+
+
+1.8 Assumptions
+Students have internet access. 
+Universities maintain accurate admission information. 
+Partner universities provide secure APIs. 
+Non-partner universities maintain official admission websites. 
+Users provide accurate academic information. 
+
+1.9 Constraints
+API integration depends on university permission. 
+Non-partner universities cannot receive direct applications. 
+Scholarship information depends on official university announcements. 
+Internet connectivity is required. 
+
+1.10 Success Criteria
+The project will be considered successful if:
+Students can successfully register and log in. 
+Universities and scholarships can be searched. 
+Students can submit applications to partner universities. 
+Students are redirected correctly to non-partner universities. 
+Admin can manage universities, students, and applications. 
+The system meets security, usability, and performance requirements. 
+All major functional and non-functional requirements pass Software Quality Assurance testing. 
+Section 9 – Use Case Specifications
+9.1 Overview
+A use case describes how different users interact with the UniGuid.pk system to accomplish a specific task. The system has four primary actors:
+Guest 
+Student 
+University Administrator 
+System Administrator 
+
+UC-001 Student Registration
+Actor
+Guest
+Description
+Allows a new student to create an account.
+Preconditions
+User is not registered. 
+Internet connection is available. 
+Main Flow
+Open Registration page. 
+Enter full name, email, phone number, and password. 
+Click Register. 
+System validates input. 
+Firebase Authentication creates the account. 
+Student account is created successfully. 
+Alternate Flow
+Email already exists. 
+Invalid email format. 
+Weak password. 
+Postcondition
+Student account is successfully created.
+
+UC-002 Student Login
+Actor
+Student
+Preconditions
+Student account exists.
+Main Flow
+Open Login page. 
+Enter email and password. 
+Click Login. 
+Firebase authenticates user. 
+Student Dashboard opens. 
+Alternate Flow
+Invalid credentials. 
+Account disabled. 
+Postcondition
+Student successfully logs in.
+
+UC-003 Complete Student Profile
+Actor
+Student
+Preconditions
+Student logged in.
+Main Flow
+Open Profile. 
+Enter personal details. 
+Enter academic information. 
+Save profile. 
+Alternate Flow
+Missing required fields.
+Postcondition
+Student profile stored in Firestore.
+
+UC-004 Upload Documents
+Actor
+Student
+Preconditions
+Student logged in.
+Main Flow
+Select document. 
+Upload file. 
+Firebase Storage stores document. 
+Document URL saved. 
+Alternate Flow
+Invalid file type. 
+Upload failed. 
+Postcondition
+Documents uploaded successfully.
+
+UC-005 Search Universities
+Actor
+Guest / Student
+Main Flow
+Open Universities page. 
+Search by name or city. 
+Apply filters. 
+View results. 
+Postcondition
+Matching universities displayed.
+
+UC-006 View University Details
+Actor
+Guest / Student
+Main Flow
+Select university. 
+System displays: 
+Programs 
+Scholarships 
+Fees 
+Admission Status 
+Eligibility 
+Website 
+
+UC-007 Search Scholarships
+Actor
+Guest / Student
+Main Flow
+Open Scholarship page. 
+Search scholarship. 
+Apply filters. 
+View eligibility. 
+
+UC-008 View Admission Details
+Actor
+Student
+Main Flow
+Select university. 
+Open Admission page. 
+View 
+Open/Closed Status 
+Deadline 
+Programs 
+Eligibility 
+Documents Required 
+
+UC-009 Apply for Admission
+Actor
+Student
+Preconditions
+Student logged in. 
+Profile completed. 
+Admission open. 
+Main Flow
+Click Apply. 
+Select program. 
+Confirm application. 
+Submit. 
+System checks
+Partner University?
+
+If YES
+Application sent through API.
+
+If NO
+Redirect student to official university website.
+Postcondition
+Application submitted or redirected.
+
+UC-010 Track Application
+Actor
+Student
+Main Flow
+Student views
+Submitted 
+Under Review 
+Accepted 
+Rejected 
+Waitlisted 
+
+UC-011 Receive Notifications
+Actor
+Student
+Notifications
+Admission Updates 
+Scholarship Updates 
+Acceptance 
+Rejection 
+
+UC-012 University Login
+Actor
+University Administrator
+
+UC-013 Manage Programs
+University Administrator
+Can
+Add Program 
+Edit Program 
+Delete Program 
+
+UC-014 Manage Scholarships
+University Administrator
+Can
+Add 
+Edit 
+Delete Scholarship 
+
+UC-015 Manage Admissions
+University Administrator
+Can
+Open Admission 
+Close Admission 
+Edit Admission 
+
+UC-016 Review Applications
+University Administrator
+Can
+View Student Information 
+View Documents 
+View Marks 
+
+UC-017 Accept / Reject Application
+University Administrator
+Can
+Accept 
+Reject 
+Waitlist 
+System automatically updates student status.
+
+UC-018 Admin Login
+Actor
+Admin
+
+UC-019 Manage Universities
+Admin
+Can
+Add University 
+Edit University 
+Delete University 
+Approve Partner University 
+
+UC-020 Manage Students
+Admin
+Can
+View 
+Block 
+Delete Student 
+
+UC-021 Manage Applications
+Admin
+Can
+View 
+Search 
+Filter Applications 
+
+UC-022 Manage Scholarships
+Admin
+Can
+Add 
+Edit 
+Delete Scholarships 
+
+UC-023 Send Notifications
+Admin
+Can send
+Admission Alerts 
+Scholarship Alerts 
+System Announcements 
+
+UC-024 Partner University API
+System
+Receives application. 
+Validates data. 
+Sends application to partner university. 
+Receives response. 
+Updates status. 
+
+UC-025 Redirect to Official Website
+System
+Student clicks Apply. 
+System checks partner status. 
+If not a partner: 
+Display a message that the application must be completed on the university's official admission portal. 
+Redirect the student to the official admission page. 
+
+9.2 Use Case Summary
+Use Case
+Actor
+UC-001
+Student Registration
+UC-002
+Student Login
+UC-003
+Complete Profile
+UC-004
+Upload Documents
+UC-005
+Search Universities
+UC-006
+University Details
+UC-007
+Search Scholarships
+UC-008
+Admission Details
+UC-009
+Apply Admission
+UC-010
+Track Application
+UC-011
+Notifications
+UC-012
+University Login
+UC-013
+Manage Programs
+UC-014
+Manage Scholarships
+UC-015
+Manage Admissions
+UC-016
+Review Applications
+UC-017
+Accept/Reject
+UC-018
+Admin Login
+UC-019
+Manage Universities
+UC-020
+Manage Students
+UC-021
+Manage Applications
+UC-022
+Manage Scholarships
+UC-023
+Send Notifications
+UC-024
+Partner API Integration
+UC-025
+Redirect to Official Website
+Section 10 – Activity Diagrams
+10.1 Overview
+Activity diagrams describe the workflow of major processes in UniGuid.pk. They illustrate the sequence of activities performed by users and the system from start to finish.
+
+AD-01 Student Registration
+Description
+This activity describes the student registration process.
+Start   │   ▼Open Registration Page   │   ▼Enter Student Information   │   ▼Validate Input   │ ┌─┴────────────┐ │ Valid?       │ └───┬───────┬──┘     │Yes    │No     ▼       ▼Create Firebase Account        Show Validation Error     │     ▼Save User in Firestore     │     ▼Registration Successful     │     ▼Go to Student Dashboard     │     ▼End
+
+AD-02 Student Login
+Start   │   ▼Open Login Page   │   ▼Enter Email & Password   │   ▼Firebase Authentication   │ ┌─┴────────────┐ │ Authenticated?│ └───┬───────┬──┘     │Yes    │No     ▼       ▼Student Dashboard Show Login Error     │     ▼End
+
+AD-03 Complete Student Profile
+Start   │   ▼Open Profile   │   ▼Enter Personal Information   │   ▼Enter Academic Information   │   ▼Save Profile   │   ▼Store Data in Firestore   │   ▼Success Message   │   ▼End
+
+AD-04 Upload Documents
+Start   │   ▼Select Document   │   ▼Upload File   │   ▼Validate File   │ ┌─┴─────────┐ │Valid File?│ └──┬─────┬──┘    │Yes  │No    ▼     ▼Upload to Firebase Show Error    │    ▼Save URL    │    ▼End
+
+AD-05 Search Universities
+Start   │   ▼Open Universities Page   │   ▼Enter Search Keyword   │   ▼Apply Filters   │   ▼Retrieve Universities   │   ▼Display Results   │   ▼End
+
+AD-06 Apply for Admission
+Start   │   ▼Student Selects University   │   ▼Admission Open?   │ ┌─┴─────────────┐ │Yes          No│ └──┬──────────┬─┘    │          │    ▼          ▼Partner?    Show Admission Closed    │ ┌──┴─────────────┐ │Yes          No │ └──┬──────────┬──┘    │          │    ▼          ▼Fill Application   Redirect to Official Website    │    ▼Upload Documents    │    ▼Submit Application    │    ▼Store in Firestore    │    ▼Send to Partner API (if partner)    │    ▼Application Submitted    │    ▼End
+
+AD-07 University Reviews Application
+Start   │   ▼University Login   │   ▼View Applications   │   ▼Review Student Profile   │   ▼Review Documents   │   ▼Make Decision   │ ┌─┴─────────────┐ │Accept Reject Waitlist│ └──────┬───────────────┘        ▼Update Status        │        ▼Notify Student        │        ▼End
+
+AD-08 Admin Manages Universities
+Start   │   ▼Admin Login   │   ▼Open University Management   │   ▼Add / Edit / Delete University   │   ▼Approve Partner University   │   ▼Save Changes   │   ▼End
+
+AD-09 Partner University API Integration
+Start   │   ▼Student Submits Application   │   ▼Validate Application   │   ▼Partner University?   │ ┌─┴────────────┐ │Yes        No │ └──┬────────┬──┘    │        │    ▼        ▼Send API   Redirect    │    ▼Receive Response    │    ▼Update Application Status    │    ▼Notify Student    │    ▼End
+
+AD-10 Notification Workflow
+Start   │   ▼Application Status Changes   │   ▼Generate Notification   │   ▼Save Notification   │   ▼Display in Dashboard   │   ▼Student Reads Notification   │   ▼End
+
+Activity Diagram Summary
+Activity Diagram
+Description
+AD-01
+Student Registration
+AD-02
+Student Login
+AD-03
+Student Profile
+AD-04
+Upload Documents
+AD-05
+Search Universities
+AD-06
+Apply for Admission
+AD-07
+University Reviews Application
+AD-08
+Admin Manages Universities
+AD-09
+Partner API Integration
+AD-10
+Notification Workflow
+Section 11 – Sequence Diagrams
+11.1 Overview
+Sequence diagrams describe the interaction between the user, frontend, backend, Firebase services, and partner university APIs. They show the order of messages exchanged to complete a specific task.
+
+SD-01 Student Registration
+Objects
+Student 
+React Frontend 
+Node.js API 
+Firebase Authentication 
+Firestore 
+Student          React App        Node API      Firebase Auth      Firestore   |                  |               |                |                |   | Register          |               |                |                |   |------------------>|               |                |                |   |                   | Send Request  |                |                |   |                   |-------------->|                |                |   |                   |               | Create User    |                |   |                   |               |--------------->|                |   |                   |               |<---------------|                |   |                   |               | Save Profile   |--------------->|   |                   |               |<---------------|                |   |<------------------| Registration Successful                        |
+
+SD-02 Student Login
+Objects
+Student 
+React App 
+Firebase Authentication 
+Student        React App       Firebase Auth   |                |                 |   | Login          |                 |   |--------------->|                 |   |                | Authenticate    |   |                |---------------->|   |                |<----------------|   |<---------------| Dashboard       |
+
+SD-03 Complete Student Profile
+Objects
+Student 
+React App 
+Node.js API 
+Firestore 
+Student       React App       API        Firestore   |               |            |             |   | Edit Profile  |            |             |   |-------------->|            |             |   |               | Save Data  |             |   |               |----------->|             |   |               |            | Store Data  |   |               |            |-----------> |   |               |            |<----------- |   |<--------------| Success                  |
+
+SD-04 Upload Documents
+Objects
+Student 
+React App 
+Firebase Storage 
+Firestore 
+Student     React App     Firebase Storage     Firestore   |             |                |                 |   | Upload      |                |                 |   |------------>|                |                 |   |             | Upload File    |                 |   |             |--------------->|                 |   |             |<---------------| File URL        |   |             | Save URL       |---------------> |   |<------------| Upload Complete                  |
+
+SD-05 Search Universities
+Objects
+Student 
+React App 
+Node API 
+Firestore 
+Student      React App       API       Firestore   |              |            |             |   | Search       |            |             |   |------------->|            |             |   |              | Request    |             |   |              |----------->|             |   |              |            | Query Data  |   |              |            |-----------> |   |              |            |<----------- |   |<-------------| University List          |
+
+SD-06 Apply for Admission
+Objects
+Student 
+React App 
+API 
+Firestore 
+Student      React App       API       Firestore   |              |            |             |   | Apply        |            |             |   |------------->|            |             |   |              | Submit     |             |   |              |----------->|             |   |              |            | Save        |   |              |            |-----------> |   |              |            |<----------- |   |<-------------| Application Submitted    |
+
+SD-07 Partner University API
+Objects
+Student 
+UniGuid API 
+Partner University API 
+University System 
+Student     UniGuid API      Partner API      University System   |              |                |                  |   | Apply        |                |                  |   |------------->|                |                  |   |              | Send Data      |                  |   |              |--------------->|                  |   |              |                | Process          |   |              |                |----------------->|   |              |                |<-----------------|   |              |<---------------| Response         |   |<-------------| Status Updated                    |
+
+SD-08 Non-Partner University
+Objects
+Student 
+UniGuid 
+Official University Website 
+Student         UniGuid          University Website   |                |                    |   | Click Apply    |                    |   |--------------->|                    |   |                | Check Partner      |   |                |                    |   |                | Redirect           |   |                |------------------->|
+
+SD-09 University Reviews Application
+Objects
+University Admin 
+Dashboard 
+Firestore 
+University Admin      Dashboard       Firestore        |                 |                |        | Login           |                |        |---------------->|                |        | View Apps       |                |        |---------------->|                |        |                 | Retrieve Data  |        |                 |--------------->|        |                 |<---------------|        | Accept/Reject   |                |        |---------------->|                |        |                 | Update Status  |        |                 |--------------->|
+
+SD-10 Notification System
+Objects
+Firestore 
+Backend API 
+Student Dashboard 
+Firestore      Backend API      Student Dashboard     |               |                  |     | Status Change |                  |     |-------------->|                  |     |               | Generate Notice  |     |               |----------------->|     |               | Notification Sent|
+
+11.2 Sequence Diagram Summary
+Diagram ID
+Process
+SD-01
+Student Registration
+SD-02
+Student Login
+SD-03
+Complete Profile
+SD-04
+Upload Documents
+SD-05
+Search Universities
+SD-06
+Apply for Admission
+SD-07
+Partner University API
+SD-08
+Redirect to Official Website
+SD-09
+University Reviews Application
+SD-10
+Notification System
+Section 12 – Conceptual ER Diagram & Data Dictionary
+12.1 Introduction
+The UniGuid.pk system uses Firebase Firestore, a NoSQL cloud database. Instead of traditional SQL tables with foreign keys, Firestore stores data in collections and documents. This section presents a conceptual Entity Relationship (ER) model and a complete data dictionary.
+
+12.2 Conceptual ER Diagram
+                          +------------------+                          |      Users       |                          +------------------+                          | userId (PK)      |                          | fullName         |                          | email            |                          | phone            |                          | role             |                          +--------+---------+                                   |                    -------------------------------                    |                             |                    ▼                             ▼             +-------------+             +----------------+             |  Students   |             | UniversityAdmin|             +-------------+             +----------------+             | studentId   |             | adminId        |             | userId      |             | universityId   |             +------+------+             +-------+--------+                    |                            |      ---------------------------                |      |            |            |                |      ▼            ▼            ▼                ▼+-----------+ +-----------+ +---------------+ +--------------+|Academic   | |Documents  | |Applications   | | Universities ||Records    | |           | |               | |              |+-----------+ +-----------+ +-------+-------+ +------+-------+                                      |                |                                      |                |                                      ▼                ▼                               +-------------+   +-------------+                               | Admissions  |   | Departments |                               +------+------+                                      |                                      ▼                                +------------+                                | Programs   |                                +------+-----+                                       |             --------------------------             |                        |             ▼                        ▼      +-------------+          +--------------+      |Scholarships |          |Notifications |      +-------------+          +--------------+
+
+12.3 Relationship Description
+User → Student
+One user has one student profile. 
+A student profile belongs to one user. 
+Relationship:
+One-to-One
+
+Student → Academic Records
+One student has one academic record.
+Relationship:
+One-to-One
+
+Student → Documents
+One student can upload multiple documents.
+Relationship:
+One-to-Many
+
+University → Departments
+One university contains many departments.
+Relationship:
+One-to-Many
+
+Department → Programs
+One department offers many degree programs.
+Relationship:
+One-to-Many
+
+University → Scholarships
+One university offers multiple scholarships.
+Relationship:
+One-to-Many
+
+University → Admissions
+One university opens multiple admission sessions.
+Relationship:
+One-to-Many
+
+Student → Applications
+One student can submit multiple applications.
+Relationship:
+One-to-Many
+
+Program → Applications
+One program can receive multiple applications.
+Relationship:
+One-to-Many
+
+Student → Notifications
+One student can receive many notifications.
+Relationship:
+One-to-Many
+
+12.4 Data Dictionary
+
+Users Collection
+Field
+Type
+Required
+Description
+userId
+String
+Yes
+Unique User ID
+fullName
+String
+Yes
+Student Name
+email
+String
+Yes
+Email Address
+phone
+String
+Yes
+Contact Number
+role
+String
+Yes
+Student / University / Admin
+createdAt
+Timestamp
+Yes
+Registration Date
+
+Students Collection
+Field
+Type
+studentId
+String
+userId
+String
+fatherName
+String
+gender
+String
+DOB
+Date
+address
+String
+city
+String
+province
+String
+
+Academic Records
+Field
+Type
+matricBoard
+String
+matricMarks
+Number
+matricYear
+Number
+interBoard
+String
+interMarks
+Number
+interYear
+Number
+
+Documents
+Field
+Type
+profilePhoto
+URL
+CNIC
+URL
+matricResult
+URL
+intermediateResult
+URL
+
+Universities
+Field
+Type
+universityId
+String
+universityName
+String
+city
+String
+province
+String
+address
+String
+category
+String
+ranking
+Number
+website
+String
+logo
+URL
+partnerStatus
+Boolean
+apiEndpoint
+String
+
+Departments
+Field
+Type
+departmentId
+String
+universityId
+String
+departmentName
+String
+
+Programs
+Field
+Type
+programId
+String
+universityId
+String
+departmentId
+String
+degreeName
+String
+duration
+String
+eligibility
+String
+feePerSemester
+Number
+creditHours
+Number
+
+Scholarships
+Field
+Type
+scholarshipId
+String
+universityId
+String
+scholarshipName
+String
+description
+String
+amount
+Number
+eligibility
+String
+deadline
+Date
+
+Admissions
+Field
+Type
+admissionId
+String
+universityId
+String
+programId
+String
+startDate
+Date
+endDate
+Date
+admissionStatus
+String
+
+Applications
+Field
+Type
+applicationId
+String
+studentId
+String
+universityId
+String
+programId
+String
+submissionDate
+Timestamp
+paymentStatus
+String
+applicationStatus
+String
+
+Notifications
+Field
+Type
+notificationId
+String
+userId
+String
+title
+String
+message
+String
+isRead
+Boolean
+createdAt
+Timestamp
+
+12.5 Firestore Collection Structure
+users/students/academicRecords/documents/universities/departments/programs/scholarships/admissions/applications/notifications/partnerAPIs/
+
+12.6 Data Integrity Rules
+The system shall ensure that:
+Every user has a unique email address. 
+Every application references a valid student and program. 
+A student cannot submit duplicate applications for the same program while admissions are open. 
+Required documents must be uploaded before submitting an application. 
+Universities can only access applications submitted to their own institution. 
+Firestore Security Rules enforce role-based access. 
+
+12.7 Future Database Enhancements
+The database design supports future additions, including:
+AI university recommendations 
+AI scholarship recommendations 
+Online application fee payments 
+Email and SMS notification history 
+Student admission history 
+Analytics dashboards 
+Mobile application synchronization
+ection 13 – Software Quality Assurance (SQA) Plan
+13.1 Introduction
+The Software Quality Assurance (SQA) Plan defines the processes, standards, activities, reviews, and testing methods that will ensure UniGuid.pk is developed with high quality, reliability, security, and maintainability.
+The objective of this plan is to ensure that every phase of development—from requirements gathering to deployment—meets the defined quality standards.
+
+13.2 SQA Objectives
+The objectives of the Software Quality Assurance Plan are:
+Ensure software meets all functional and non-functional requirements. 
+Deliver a reliable and secure application. 
+Reduce software defects before deployment. 
+Improve maintainability and scalability. 
+Verify that all project modules work correctly. 
+Ensure compliance with software engineering best practices. 
+Maintain complete documentation throughout the project lifecycle. 
+
+13.3 Quality Standards
+The UniGuid.pk project will follow these quality standards:
+Standard
+Purpose
+IEEE SRS Standard
+Software Requirements Specification
+Agile Development
+Iterative software development
+REST API Standards
+API communication
+Firebase Security Rules
+Database and storage security
+Git Version Control
+Source code management
+OWASP Guidelines
+Web application security
+
+13.4 Quality Assurance Activities
+Requirement Phase
+Activities:
+Requirement gathering 
+Requirement validation 
+Requirement review 
+SRS preparation 
+Requirement approval 
+Deliverables:
+SRS Document 
+Functional Requirements 
+Non-Functional Requirements 
+
+Design Phase
+Activities:
+UI Design Review 
+Database Design Review 
+Architecture Review 
+API Design Review 
+UML Diagram Review 
+Deliverables:
+System Architecture 
+Database Design 
+API Specification 
+UML Diagrams 
+
+Development Phase
+Activities:
+Code Review 
+Code Inspection 
+Git Version Control 
+Static Code Analysis 
+Coding Standard Verification 
+Deliverables:
+Source Code 
+API Implementation 
+Firebase Integration 
+
+Testing Phase
+Activities:
+Unit Testing 
+Integration Testing 
+System Testing 
+Security Testing 
+Performance Testing 
+User Acceptance Testing 
+Deliverables:
+Test Cases 
+Bug Reports 
+Test Report 
+
+Deployment Phase
+Activities:
+Final Verification 
+Deployment Review 
+User Acceptance 
+Documentation Verification 
+Deliverables:
+Production Version 
+User Manual 
+
+13.5 Software Reviews
+The project will conduct the following reviews:
+Requirements Review
+Purpose:
+Ensure that all requirements are complete, correct, and understandable.
+
+Design Review
+Purpose:
+Verify that the architecture, database, APIs, and UI satisfy system requirements.
+
+Code Review
+Purpose:
+Improve code quality and detect defects early.
+
+Test Review
+Purpose:
+Ensure that all requirements are covered by test cases.
+
+Final Review
+Purpose:
+Confirm that the software is ready for deployment.
+
+13.6 Verification and Validation
+Verification
+Verification answers the question:
+"Are we building the product correctly?"
+Methods:
+Reviews 
+Inspections 
+Walkthroughs 
+Code Reviews 
+
+Validation
+Validation answers the question:
+"Are we building the correct product?"
+Methods:
+User Testing 
+Functional Testing 
+Acceptance Testing 
+
+13.7 Defect Management Process
+Defect Found      │      ▼Report Defect      │      ▼Assign Priority      │      ▼Developer Fixes Issue      │      ▼Retesting      │ ┌────┴─────┐ │ Pass?    │ └───┬───┬──┘     │Yes│No     ▼   ▼Close   ReopenDefect  Defect
+
+13.8 Configuration Management
+The project will use:
+Git 
+GitHub 
+Version Control 
+Branch Management 
+Release Management 
+
+13.9 Coding Standards
+The development team shall follow these standards:
+Meaningful variable names 
+Modular code 
+Reusable React components 
+Proper comments 
+Consistent indentation 
+Error handling 
+API validation 
+Secure authentication 
+
+13.10 Risk Management
+Potential quality risks include:
+Risk
+Mitigation
+Incomplete requirements
+Requirement review meetings
+API failure
+Redirect to official university website
+Firebase downtime
+Retry mechanism and error handling
+Security vulnerabilities
+Authentication and authorization
+Performance issues
+Database indexing and optimization
+Data loss
+Cloud backup and recovery plan
+
+13.11 Quality Metrics
+The following metrics will be monitored:
+Number of defects found 
+Number of defects fixed 
+Test case pass rate 
+Requirement coverage 
+Code review completion 
+User Acceptance Test (UAT) success rate 
+Application response time 
+
+13.12 Acceptance Criteria
+The project will be accepted when:
+All functional requirements are implemented. 
+All critical defects are resolved. 
+Test cases pass successfully. 
+User Acceptance Testing is completed. 
+Documentation is finalized. 
+The system is deployed successfully. 
+
+13.13 SQA Deliverables
+The following documents will be produced:
+Software Requirements Specification (SRS) 
+Software Design Document (SDD) 
+Test Plan 
+Test Cases 
+Bug Reports 
+User Manual 
+Deployment Guide 
+Final Project Report 
+
+13.14 SQA Summary
+Phase
+QA Activity
+Deliverable
+Requirements
+Requirement Review
+Approved SRS
+Design
+Design Review
+Design Documents
+Development
+Code Review
+Source Code
+Testing
+Functional & Non-Functional Testing
+Test Reports
+Deployment
+Acceptance Review
+Final Release
+Section 14 – Testing Strategy & Test Cases
+14.1 Introduction
+Testing ensures that UniGuid.pk meets all functional and non-functional requirements. The objective is to identify defects early, verify system behavior, improve software quality, and ensure the application is ready for deployment.
+Testing will be performed throughout the Software Development Life Cycle (SDLC) following Software Quality Assurance (SQA) best practices.
+
+14.2 Testing Objectives
+The testing process aims to:
+Verify all functional requirements. 
+Validate non-functional requirements. 
+Ensure secure authentication and authorization. 
+Verify partner university API integration. 
+Ensure accurate data storage in Firebase. 
+Detect defects before deployment. 
+Improve system reliability and performance. 
+Confirm the application meets user expectations. 
+
+14.3 Testing Levels
+1. Unit Testing
+Purpose:
+Test each component independently.
+Examples:
+Login Form 
+Registration Form 
+Search Component 
+University Card 
+Scholarship Card 
+Notification Component 
+Performed By:
+Developer
+
+2. Integration Testing
+Purpose:
+Verify communication between modules.
+Examples:
+React ↔ Express API 
+Express ↔ Firebase Firestore 
+Express ↔ Firebase Storage 
+Express ↔ Firebase Authentication 
+Express ↔ Partner University API 
+
+3. System Testing
+Purpose:
+Test the complete application.
+Examples:
+Complete admission process 
+Complete registration process 
+Complete scholarship search 
+Student dashboard 
+University dashboard 
+Admin dashboard 
+
+4. User Acceptance Testing (UAT)
+Purpose:
+Verify the system satisfies user requirements.
+Participants:
+Students 
+University Representatives 
+Project Supervisor 
+
+14.4 Functional Testing
+The following modules will be tested:
+Module
+Test
+Registration
+Account creation
+Login
+Authentication
+Student Profile
+CRUD operations
+Universities
+Search & Filter
+Scholarships
+Search
+Admissions
+Open/Close Status
+Applications
+Submit Application
+Notifications
+Display Notifications
+University Dashboard
+Manage Admissions
+Admin Dashboard
+Manage System
+
+14.5 Non-Functional Testing
+Performance Testing
+Verify:
+Page load time ≤ 3 seconds 
+Fast search results 
+Smooth dashboard performance 
+
+Security Testing
+Verify:
+Secure login 
+Role-based access control 
+Protected API routes 
+Firebase Security Rules 
+Input validation 
+
+Compatibility Testing
+Test supported browsers:
+Google Chrome 
+Mozilla Firefox 
+Microsoft Edge 
+Safari 
+Test supported devices:
+Desktop 
+Laptop 
+Tablet 
+Mobile 
+
+Usability Testing
+Verify:
+Easy navigation 
+Responsive design 
+Clear error messages 
+Simple forms 
+Accessible interface 
+
+Reliability Testing
+Verify:
+No data loss after submission. 
+Application status updates correctly. 
+Uploaded documents remain available. 
+
+14.6 Test Environment
+Item
+Environment
+Frontend
+React.js
+Backend
+Node.js + Express
+Database
+Firebase Firestore
+Authentication
+Firebase Authentication
+Storage
+Firebase Storage
+Browser
+Chrome, Firefox, Edge, Safari
+OS
+Windows, Linux, macOS
+
+14.7 Sample Test Cases
+TC-001 Student Registration
+Requirement ID: FR-007
+Objective: Verify student registration.
+Precondition: User does not already have an account.
+Step
+Expected Result
+Open Registration Page
+Page opens successfully
+Enter valid information
+Data accepted
+Click Register
+Account created
+Redirect to Dashboard
+Success
+Result:
+Pass / Fail
+
+TC-002 Student Login
+Requirement ID: FR-008
+Step
+Expected Result
+Enter valid email
+Accepted
+Enter valid password
+Accepted
+Click Login
+Dashboard opens
+
+TC-003 Upload Documents
+Requirement ID: FR-013
+Step
+Expected Result
+Select PDF/Image
+Accepted
+Upload
+Stored in Firebase Storage
+Save
+URL stored in Firestore
+
+TC-004 Search Universities
+Requirement ID: FR-015
+Step
+Expected Result
+Enter university name
+Matching universities displayed
+Apply filters
+Results updated correctly
+
+TC-005 Apply for Admission
+Requirement ID: FR-024
+Step
+Expected Result
+Select university
+University details displayed
+Click Apply
+Admission flow starts
+Submit application
+Application saved successfully
+
+TC-006 Partner University API
+Requirement ID: FR-027
+Step
+Expected Result
+Submit application
+API request sent
+University responds
+Status updated
+Student notified
+Notification received
+
+TC-007 Non-Partner University
+Requirement ID: FR-026
+Step
+Expected Result
+Click Apply
+Redirect to official admission page
+
+TC-008 University Reviews Application
+Requirement ID: FR-038
+Step
+Expected Result
+Open application
+Details displayed
+Accept application
+Status updated
+Student notified
+Notification sent
+
+TC-009 Admin Adds University
+Requirement ID: FR-042
+Step
+Expected Result
+Enter university details
+Validated
+Save
+University added
+
+TC-010 Scholarship Search
+Requirement ID: FR-021
+Step
+Expected Result
+Search scholarship
+Matching scholarships displayed
+
+14.8 Defect Severity Levels
+Severity
+Description
+Critical
+System crash or data loss
+High
+Major functionality unavailable
+Medium
+Feature works incorrectly
+Low
+Minor UI or usability issue
+
+14.9 Bug Life Cycle
+New Bug   │   ▼Assigned   │   ▼In Progress   │   ▼Fixed   │   ▼Retesting   │ ┌────┴────┐ │ Pass?   │ └──┬───┬──┘    │Yes│No    ▼   ▼Closed Reopened
+
+14.10 Exit Criteria
+Testing will be completed when:
+100% of critical requirements are tested. 
+All critical defects are resolved. 
+Major defects are resolved or approved. 
+User Acceptance Testing (UAT) is completed. 
+The supervisor approves the system for deployment. 
+
+14.11 Testing Deliverables
+The project will produce:
+Test Plan 
+Test Cases 
+Test Execution Report 
+Defect Log 
+Bug Reports 
+Test Summary Report 
+UAT Report 
+
+14.12 Testing Summary
+Testing Level
+Purpose
+Unit Testing
+Verify individual components
+Integration Testing
+Verify module communication
+System Testing
+Verify complete application
+Acceptance Testing
+Verify user requirements
+Security Testing
+Verify system security
+Performance Testing
+Verify response time
+Compatibility Testing
+Verify browser/device support
+Section 15 – Requirements Traceability Matrix (RTM)
+15.1 Introduction
+The Requirements Traceability Matrix (RTM) provides complete traceability between system requirements, implementation modules, use cases, APIs, and test cases.
+The RTM ensures that:
+Every requirement is implemented. 
+Every requirement is tested. 
+No requirement is missed. 
+Software Quality Assurance (SQA) activities can verify complete requirement coverage. 
+
+15.2 RTM Objectives
+The RTM helps to:
+Verify requirement coverage. 
+Support software testing. 
+Simplify defect tracking. 
+Improve project quality. 
+Assist future maintenance. 
+
+15.3 Requirements Traceability Matrix
+Requirement ID
+Requirement
+Module
+Use Case
+API
+Test Case
+Status
+FR-001
+View Home Page
+Guest
+UC-001
+-
+TC-001
+Planned
+FR-002
+Search Universities
+University
+UC-005
+API-009
+TC-004
+Planned
+FR-003
+View University Details
+University
+UC-006
+API-010
+TC-004
+Planned
+FR-004
+Search Scholarships
+Scholarship
+UC-007
+API-013
+TC-010
+Planned
+FR-005
+View Admission Details
+Admission
+UC-008
+API-015
+TC-005
+Planned
+FR-006
+Student Registration
+Authentication
+UC-001
+API-001
+TC-001
+Planned
+FR-007
+Student Login
+Authentication
+UC-002
+API-002
+TC-002
+Planned
+FR-008
+Forgot Password
+Authentication
+UC-002
+API-004
+TC-002
+Planned
+FR-009
+Student Profile
+Student
+UC-003
+API-005
+TC-003
+Planned
+FR-010
+Upload Documents
+Student
+UC-004
+API-008
+TC-003
+Planned
+FR-011
+Search Universities
+University
+UC-005
+API-012
+TC-004
+Planned
+FR-012
+View Programs
+University
+UC-006
+API-011
+TC-004
+Planned
+FR-013
+Scholarship Search
+Scholarship
+UC-007
+API-013
+TC-010
+Planned
+FR-014
+Apply Admission
+Admission
+UC-009
+API-017
+TC-005
+Planned
+FR-015
+View Applications
+Student
+UC-010
+API-018
+TC-005
+Planned
+FR-016
+Notifications
+Notification
+UC-011
+API-030
+TC-008
+Planned
+FR-017
+University Login
+University
+UC-012
+API-021
+TC-008
+Planned
+FR-018
+Manage Programs
+University
+UC-013
+API-022
+TC-008
+Planned
+FR-019
+Manage Scholarships
+University
+UC-014
+API-023
+TC-010
+Planned
+FR-020
+Manage Admissions
+University
+UC-015
+API-024
+TC-008
+Planned
+FR-021
+Review Applications
+University
+UC-016
+API-025
+TC-008
+Planned
+FR-022
+Accept / Reject Application
+University
+UC-017
+API-020
+TC-008
+Planned
+FR-023
+Admin Login
+Admin
+UC-018
+API-026
+TC-009
+Planned
+FR-024
+Manage Universities
+Admin
+UC-019
+API-027
+TC-009
+Planned
+FR-025
+Manage Students
+Admin
+UC-020
+API-026
+TC-009
+Planned
+FR-026
+Manage Applications
+Admin
+UC-021
+API-029
+TC-009
+Planned
+FR-027
+Manage Scholarships
+Admin
+UC-022
+API-023
+TC-010
+Planned
+FR-028
+Send Notifications
+Admin
+UC-023
+API-030
+TC-008
+Planned
+FR-029
+Partner University API
+API Integration
+UC-024
+API-027
+TC-006
+Planned
+FR-030
+Redirect to Official Website
+Admission
+UC-025
+-
+TC-007
+Planned
+
+15.4 Traceability Workflow
+Business Requirement        │        ▼Functional Requirement (FR)        │        ▼Use Case (UC)        │        ▼API Specification        │        ▼Implementation Module        │        ▼Test Case (TC)        │        ▼Verification        │        ▼Acceptance
+
+15.5 Requirement Status
+During project development, each requirement will be tracked using the following statuses:
+Status
+Description
+Planned
+Requirement identified but not implemented
+In Progress
+Currently being developed
+Implemented
+Development completed
+Tested
+Successfully verified
+Approved
+Accepted after User Acceptance Testing
+
+15.6 Change Management
+If a requirement changes:
+Update the SRS. 
+Update the RTM. 
+Update affected modules. 
+Modify related APIs. 
+Update test cases. 
+Perform regression testing. 
+Obtain stakeholder approval. 
+
+15.7 Benefits of RTM
+The RTM provides:
+Complete requirement coverage. 
+Easier project management. 
+Better defect tracking. 
+Improved testing efficiency. 
+Higher software quality. 
+Easier future maintenance. 
+
+15.8 RTM Summary
+The Requirements Traceability Matrix ensures that every feature in UniGuid.pk can be traced from its original requirement through implementation and testing. This improves quality assurance, simplifies maintenance, and helps ensure no critical functionality is overlooked.
+ection 16 – Risk Analysis & Risk Management
+16.1 Introduction
+Risk management is the process of identifying, analyzing, monitoring, and mitigating risks that may affect the successful development and operation of UniGuid.pk.
+The objective is to minimize project delays, security issues, technical failures, and operational problems.
+
+16.2 Risk Identification
+The following risks have been identified for the project.
+Risk ID
+Risk
+Category
+R-01
+Requirement changes
+Project
+R-02
+API integration failure
+Technical
+R-03
+Firebase service outage
+Technical
+R-04
+Security vulnerabilities
+Security
+R-05
+Data loss
+Database
+R-06
+Schedule delay
+Management
+R-07
+Performance issues
+Technical
+R-08
+Browser compatibility
+Technical
+R-09
+Partner university withdraws API access
+Business
+R-10
+User enters invalid data
+Operational
+
+16.3 Risk Assessment
+Risk
+Probability
+Impact
+Priority
+Requirement Changes
+Medium
+High
+High
+API Failure
+Medium
+High
+High
+Firebase Downtime
+Low
+High
+Medium
+Security Attack
+Medium
+Very High
+Critical
+Data Loss
+Low
+High
+High
+Performance Issues
+Medium
+Medium
+Medium
+Browser Issues
+Low
+Low
+Low
+Schedule Delay
+Medium
+High
+High
+
+16.4 Risk Mitigation Plan
+Risk
+Mitigation
+Requirement Changes
+Freeze requirements after approval and document changes.
+API Failure
+Redirect users to the official university admission website.
+Firebase Downtime
+Display user-friendly error messages and retry requests.
+Security Issues
+Use Firebase Authentication, HTTPS, input validation, and role-based access control.
+Data Loss
+Schedule backups and validate database operations.
+Performance
+Optimize queries, use indexes, and implement pagination.
+Schedule Delay
+Use Agile sprints and weekly progress reviews.
+
+16.5 Risk Monitoring
+Risks will be reviewed:
+Weekly during development. 
+Before every sprint completion. 
+Before deployment. 
+After major feature implementation. 
+
+16.6 Risk Summary
+The project follows a proactive risk management strategy to reduce technical, operational, and security risks while maintaining software quality.
+
+✅ End of Section 16
+
+Section 17 – Project Implementation Plan
+17.1 Development Methodology
+The project follows the Agile Software Development Methodology.
+Each sprint delivers a working part of the system.
+
+17.2 Sprint Plan
+Sprint 1
+Project Setup 
+GitHub Repository 
+React Setup 
+Express Backend 
+Firebase Configuration 
+
+Sprint 2
+Authentication Module
+Register 
+Login 
+Forgot Password 
+Logout 
+
+Sprint 3
+Student Module
+Dashboard 
+Student Profile 
+Academic Record 
+Upload Documents 
+
+Sprint 4
+University Module
+University List 
+Search 
+Filters 
+University Details 
+
+Sprint 5
+Scholarship Module
+Scholarships 
+Scholarship Search 
+Eligibility 
+Deadlines 
+
+Sprint 6
+Admission Module
+Admission Status 
+Apply Now 
+Partner API 
+Redirect to Official Website 
+
+Sprint 7
+University Dashboard
+Login 
+Manage Programs 
+Manage Admissions 
+Review Applications 
+Accept/Reject Students 
+
+Sprint 8
+Admin Panel
+Manage Students 
+Manage Universities 
+Manage Scholarships 
+Reports 
+Notifications 
+
+Sprint 9
+Testing
+Unit Testing 
+Integration Testing 
+System Testing 
+Bug Fixing 
+
+Sprint 10
+Deployment
+Firebase Hosting 
+Final Testing 
+Documentation 
+Presentation 
+
+17.3 Milestones
+Milestone
+Description
+M1
+Requirements Completed
+M2
+UI Completed
+M3
+Authentication Completed
+M4
+Student Module Completed
+M5
+University Module Completed
+M6
+Admission Module Completed
+M7
+Admin Dashboard Completed
+M8
+Testing Completed
+M9
+Deployment Completed
+Section 18 – Deployment Plan
+18.1 Deployment Environment
+Frontend:
+React.js 
+Backend:
+Node.js + Express 
+Database:
+Firebase Firestore 
+Authentication:
+Firebase Authentication 
+Storage:
+Firebase Storage 
+Hosting:
+Firebase Hosting 
+
+18.2 Deployment Steps
+Build React application. 
+Deploy backend server. 
+Configure Firebase. 
+Deploy frontend. 
+Configure environment variables. 
+Test production environment. 
+Go live. 
+
+18.3 Backup Strategy
+Firestore backups. 
+Firebase Storage backups. 
+GitHub source code backup. 
+Configuration backup. 
+
+18.4 Maintenance
+The administrator shall:
+Monitor server logs. 
+Update university data. 
+Update scholarships. 
+Monitor APIs. 
+Review security logs. 
+Apply software updates. 
+Section 19 – Future Enhancements
+Future versions of UniGuid.pk may include:
+AI-based university recommendations. 
+AI scholarship recommendation system. 
+AI admission eligibility checker. 
+AI chatbot for student support. 
+Mobile application (Android & iOS). 
+Online admission fee payment. 
+SMS notifications. 
+Email notifications. 
+Video counseling sessions. 
+University ranking and comparison. 
+Student discussion forum. 
+Career guidance module. 
+Internship opportunities. 
+Job portal integration. 
+Analytics dashboard. 
+Multi-language support (English and Urdu). 
+OCR for automatic document verification. 
+Digital admission tracking.
+Section 20 – References & Appendices
+References
+The project is based on the following technologies and standards:
+IEEE Software Requirements Specification (SRS) 
+Agile Software Development Methodology 
+HTML5 
+CSS3 
+JavaScript (ES6) 
+React.js 
+Node.js 
+Express.js 
+Firebase Firestore 
+Firebase Authentication 
+Firebase Storage 
+Git & GitHub 
+RESTful API Architecture 
+OWASP Web Security Guidelines 
+
+Appendix A – Acronyms
+Acronym
+Meaning
+SRS
+Software Requirements Specification
+SQA
+Software Quality Assurance
+API
+Application Programming Interface
+UI
+User Interface
+UX
+User Experience
+UAT
+User Acceptance Testing
+ERD
+Entity Relationship Diagram
+RTM
+Requirements Traceability Matrix
+CRUD
+Create, Read, Update, Delete
+RBAC
+Role-Based Access Control
+
+Appendix B – Project Scope
+UniGuid.pk is a centralized university admission and scholarship guidance platform for Pakistan. The system enables students to search universities, explore programs and scholarships, view admission status, and apply online to partner universities or be redirected to official university admission portals for non-partner institutions.
+
+Appendix C – Assumptions
+Users have internet access. 
+Firebase services are available. 
+Partner universities provide valid API endpoints. 
+University data is kept up to date. 
+Students provide accurate information. 
+
+🎉 Congratulations!
+

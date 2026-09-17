@@ -1,0 +1,72 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ─── Helper Functions ──────────────────────────────────────────
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "super_admin";
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // ─── Users Collection ──────────────────────────────────────────
+    match /users/{userId} {
+      // Users can read and write their own profile
+      // Admins can read and write all profiles
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    // ─── AI Admissions Collection ──────────────────────────────────
+    match /ai_discoveries/{discoveryId} {
+      // Anyone can read approved/published admissions
+      allow read: if resource.data.status == "approved";
+      // Only admins can read pending/rejected, and perform writes (approve, edit, reject)
+      allow read, write: if isAdmin();
+    }
+
+    // ─── Applications Collection ───────────────────────────────────
+    match /applications/{applicationId} {
+      // Students can read their own applications
+      allow read: if isAuthenticated() && resource.data.studentId == request.auth.uid;
+      // Students can create applications
+      allow create: if isAuthenticated() && request.resource.data.studentId == request.auth.uid;
+      // Only admins can update (approve/reject/edit) or read all
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ─── Documents Collection (Verification) ───────────────────────
+    match /documents/{documentId} {
+      // Students can upload and view their own documents
+      allow read, create: if isAuthenticated() && request.resource.data.studentId == request.auth.uid;
+      // Only admins can verify or reject
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ─── Universities Collection ───────────────────────────────────
+    match /universities/{universityId} {
+      // Public can read approved universities
+      allow read: if resource.data.status == "approved";
+      // Admins can do everything
+      allow read, write: if isAdmin();
+    }
+
+    // ─── Articles Collection ───────────────────────────────────────
+    match /articles/{articleId} {
+      // Anyone can read articles
+      allow read: if true;
+      // Only admins can write articles
+      allow write: if isAdmin();
+    }
+
+    // ─── Default Deny ──────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

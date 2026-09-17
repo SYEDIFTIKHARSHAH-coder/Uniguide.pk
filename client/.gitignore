@@ -1,0 +1,29 @@
+# Logs
+*.log
+logs/
+server_log.txt
+crawler_output.txt
+expiry_results.txt
+verify_results.txt
+cookies.txt
+
+# Dependencies & Build Output
+node_modules/
+dist/
+dist-ssr/
+.vite-temp/
+.oxlintrc.json
+
+# Environment & Secret Files (CRITICAL SECURITY)
+.env
+.env.*
+!.env.example
+firebase-service-account.json
+*.pem
+*.key
+
+# Editor & System Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
