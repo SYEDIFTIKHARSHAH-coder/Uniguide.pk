@@ -17,6 +17,23 @@ export function getAdminApp() {
   if (adminApp) return adminApp;
 
   const serviceAccountPath = path.resolve(process.cwd(), 'firebase-service-account.json');
+  const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
+
+  if (serviceAccountJson) {
+    try {
+      let serviceAccount = JSON.parse(serviceAccountJson);
+      if (typeof serviceAccount === "string") {
+        serviceAccount = JSON.parse(serviceAccount);
+      }
+      adminApp = initializeApp({
+        credential: cert(serviceAccount),
+      });
+      console.log("✅ Firebase Admin SDK initialized with Render environment credentials");
+      return adminApp;
+    } catch (e) {
+      console.error("❌ Failed to parse FIREBASE_SERVICE_ACCOUNT_JSON:", e.message);
+    }
+  }
 
   if (existsSync(serviceAccountPath)) {
     // ── PRODUCTION: Use service account JSON from file ──
