@@ -14,6 +14,8 @@ import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const COOKIE_NAME = "uniguid_session";
+const COOKIE_SECURE = process.env.NODE_ENV === "production";
+const COOKIE_SAME_SITE = COOKIE_SECURE ? "none" : "strict";
 
 // ─── Issue a signed JWT and set it as HttpOnly cookie ────────────────────────
 export function issueSessionCookie(res, payload) {
@@ -33,8 +35,8 @@ export function issueSessionCookie(res, payload) {
 
   res.cookie(COOKIE_NAME, token, {
     httpOnly: true,                          // JS cannot read this cookie
-    secure: process.env.NODE_ENV === "production", // HTTPS only in prod
-    sameSite: "strict",                      // CSRF protection
+    secure: COOKIE_SECURE,
+    sameSite: COOKIE_SAME_SITE,
     maxAge: 7 * 24 * 60 * 60 * 1000,        // 7 days in ms
     path: "/",
   });
@@ -46,8 +48,8 @@ export function issueSessionCookie(res, payload) {
 export function clearSessionCookie(res) {
   res.clearCookie(COOKIE_NAME, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    secure: COOKIE_SECURE,
+    sameSite: COOKIE_SAME_SITE,
     path: "/",
   });
 }

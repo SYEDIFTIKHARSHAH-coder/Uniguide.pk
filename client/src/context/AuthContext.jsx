@@ -41,7 +41,9 @@ export function AuthProvider({ children }) {
       } else {
         // Fallback for hardcoded admin session (bypasses Firebase)
         try {
-          const res = await fetch((import.meta.env.VITE_API_BASE_URL || "") + "/api/auth/me");
+          const res = await fetch((import.meta.env.VITE_API_BASE_URL || "") + "/api/auth/me", {
+            credentials: "include",
+          });
           if (res.ok) {
             const data = await res.json();
             if (data.success && data.data && data.data.role === "admin") {
@@ -242,7 +244,10 @@ export function AuthProvider({ children }) {
   async function logout() {
     await signOut(auth);
     try {
-      await fetch((import.meta.env.VITE_API_BASE_URL || "") + "/api/auth/logout", { method: "POST" });
+      await fetch((import.meta.env.VITE_API_BASE_URL || "") + "/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
     } catch (err) {
       console.error("Backend logout failed:", err);
     }
