@@ -42,7 +42,7 @@ const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const DocumentVerification = lazy(() => import('./pages/admin/DocumentVerification'));
 const UserManagement = lazy(() => import('./pages/admin/UserManagement'));
 const SystemSettings = lazy(() => import('./pages/admin/SystemSettings'));
-const AiAdmissionDashboard = lazy(() => import('./pages/admin/AiAdmissionDashboard'));
+const AiAdmissionsPage = lazy(() => import('./pages/admin/AiAdmissionDashboard'));
 const ApplicationsManagement = lazy(() => import('./pages/admin/ApplicationsManagement'));
 const UniversitiesManagement = lazy(() => import('./pages/admin/UniversitiesManagement'));
 const CoursesManagement = lazy(() => import('./pages/admin/CoursesManagement'));
@@ -279,7 +279,7 @@ function App() {
             {/* ─── Admin Routes (Require Admin/Super Admin Role) ─── */}
             <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
               <Route index element={<AdminDashboard />} />
-              <Route path="ai-admissions" element={<AiAdmissionDashboard />} />
+              <Route path="ai-admissions" element={<AiAdmissionsPage />} />
               <Route path="applications" element={<ApplicationsManagement />} />
               <Route path="universities" element={<UniversitiesManagement />} />
               <Route path="courses" element={<CoursesManagement />} />
