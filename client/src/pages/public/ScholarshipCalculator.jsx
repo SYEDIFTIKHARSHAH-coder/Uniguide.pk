@@ -130,7 +130,7 @@ export default function ScholarshipCalculator() {
   const [typeFilter, setTypeFilter] = useState("all");
 
   useEffect(() => {
-    axios.get("/api/scholarships")
+    axios.get((import.meta.env.VITE_API_BASE_URL || "") + "/api/scholarships")
       .then(r => setScholarships(r.data.data || []))
       .catch(() => setScholarships([]))
       .finally(() => setLoading(false));

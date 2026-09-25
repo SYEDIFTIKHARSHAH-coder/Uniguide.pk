@@ -115,7 +115,7 @@ app.use((err, req, res, next) => {
 
 // ─── Start ────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`\n🚀 UniGuid.pk Server running on http://localhost:${PORT}`);
+  console.log(`\n🚀 UniGuid.pk Server running on Port ${PORT}`);
   console.log(`👤 Admin: ${process.env.ADMIN_USERNAME}`);
   console.log(`📧 Contact: ifitkharbusiness100@gmail.com`);
   console.log(`📋 Routes registered: admin, universities, applications, courses, entry-tests, guidance, notifications, utilities, ai-admissions\n`);

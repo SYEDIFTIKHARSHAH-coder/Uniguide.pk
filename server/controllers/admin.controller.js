@@ -1,5 +1,7 @@
 import * as adminService from "../services/admin.service.js";
 import { documentVerificationSchema, userStatusSchema, systemSettingsSchema, universityCreationSchema } from "../validators/admin.validator.js";
+import { guidanceArticleSchema } from "../validators/guidance.validator.js";
+
 
 // ─── Analytics ────────────────────────────────────────────────────────────────
 export const getDashboardAnalytics = async (req, res) => {
@@ -219,13 +221,19 @@ export const getArticles = async (req, res) => {
 
 export const createArticle = async (req, res) => {
   try {
+    const validated = guidanceArticleSchema.parse(req.body);
     const adminName = req.user?.name || "Syed Iftikhar Shah";
-    const result = await adminService.createArticle({ ...req.body, author: req.body.author || adminName });
+    const result = await adminService.createArticle({ ...validated, author: validated.author || adminName });
     res.status(201).json({ success: true, data: result, message: "Article published successfully" });
   } catch (err) {
+    if (err.name === "ZodError") {
+      const issues = err.errors.map(e => `${e.path.join(".")}: ${e.message}`);
+      return res.status(400).json({ success: false, message: "Validation error", errors: issues });
+    }
     res.status(500).json({ success: false, message: err.message });
   }
 };
+
 
 export const updateArticle = async (req, res) => {
   try {

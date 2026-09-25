@@ -3,6 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPublishedAdmissions } from "../../api/adminApi";
 import { ExternalLink, Calendar, BookOpen, MapPin, Award, Star, Search, Building2, ShieldCheck, ChevronRight } from "lucide-react";
 
+const getDomain = (url) => {
+  if (!url) return null;
+  try {
+    let hostname = new URL(url).hostname;
+    return hostname.startsWith('www.') ? hostname.substring(4) : hostname;
+  } catch (e) {
+    return null;
+  }
+};
+
 export default function AdmissionsPortal() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sectorFilter, setSectorFilter] = useState("all");
@@ -205,7 +215,11 @@ export default function AdmissionsPortal() {
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: "20px" }}>
-            {filtered.map(uni => (
+            {filtered.map(uni => {
+              const domain = getDomain(uni.officialWebsite || uni.websiteUrl);
+              const logoUrl = uni.imageUrl || (domain ? `https://logo.clearbit.com/${domain}` : null);
+              
+              return (
               <div key={uni.id} style={{
                 background: "#FFFFFF",
                 borderRadius: "14px",
@@ -218,7 +232,46 @@ export default function AdmissionsPortal() {
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 8px 30px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
-                <div style={{ padding: "24px 24px 20px", flex: 1 }}>
+                {/* University Logo / Image Banner */}
+                <div style={{
+                  height: "70px",
+                  background: "linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)",
+                  position: "relative",
+                  borderBottom: "1px solid #E2E8F0"
+                }}>
+                  <div style={{
+                    position: "absolute",
+                    bottom: "-24px",
+                    left: "24px",
+                    width: "56px",
+                    height: "56px",
+                    borderRadius: "12px",
+                    background: "#FFFFFF",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+                    border: "1px solid #E2E8F0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    overflow: "hidden"
+                  }}>
+                    {logoUrl ? (
+                      <img 
+                        src={logoUrl} 
+                        alt={uni.name || uni.universityName} 
+                        style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }} 
+                      />
+                    ) : null}
+                    <div style={{ display: logoUrl ? 'none' : 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                      <Building2 size={28} color="#94A3B8" />
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ padding: "36px 24px 20px", flex: 1 }}>
                   {/* Header */}
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px", marginBottom: "14px" }}>
                     <h3 style={{ fontSize: "17px", fontWeight: "800", color: "#0F172A", lineHeight: 1.3 }}>
@@ -343,7 +396,7 @@ export default function AdmissionsPortal() {
                   )}
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         )}
       </section>

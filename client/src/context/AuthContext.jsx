@@ -32,18 +32,44 @@ export function AuthProvider({ children }) {
 
   // Listen for Firebase auth state changes
   useEffect(() => {
+    let isMounted = true;
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        setUser(firebaseUser);
+        if (isMounted) setUser(firebaseUser);
         await fetchUserProfile(firebaseUser.uid);
+        if (isMounted) setLoading(false);
       } else {
-        setUser(null);
-        setUserProfile(null);
-        setUserRole(null);
+        // Fallback for hardcoded admin session (bypasses Firebase)
+        try {
+          const res = await fetch((import.meta.env.VITE_API_BASE_URL || "") + "/api/auth/me");
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.data && data.data.role === "admin") {
+              if (isMounted) {
+                setUser({ uid: data.data.uid, email: data.data.email });
+                setUserProfile(data.data);
+                setUserRole(data.data.role);
+                setLoading(false);
+                return;
+              }
+            }
+          }
+        } catch (err) {
+          console.error("Backend session check failed:", err);
+        }
+
+        if (isMounted) {
+          setUser(null);
+          setUserProfile(null);
+          setUserRole(null);
+          setLoading(false);
+        }
       }
-      setLoading(false);
     });
-    return () => unsubscribe();
+    return () => {
+      isMounted = false;
+      unsubscribe();
+    };
   }, []);
 
   // Fetch user profile from Firestore
@@ -140,6 +166,26 @@ export function AuthProvider({ children }) {
 
   // ─── Login with Email & Password ──────────────────────────────
   async function login(email, password) {
+    // 1. Intercept hardcoded admin login to bypass Firebase completely
+    if (email.toLowerCase().trim() === SINGLE_ADMIN_EMAIL.toLowerCase().trim()) {
+      const res = await fetch((import.meta.env.VITE_API_BASE_URL || "") + "/api/auth/admin-login", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: email, password })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setUser({ uid: data.data.uid, email: data.data.email });
+        setUserProfile(data.data);
+        setUserRole(data.data.role);
+        return data.data;
+      } else {
+        throw new Error(data.message || "Invalid admin credentials.");
+      }
+    }
+
+    // 2. Normal student login goes through Firebase
     const { user: loggedInUser } = await signInWithEmailAndPassword(auth, email, password);
     await verifyTokenWithBackend(loggedInUser);
     await fetchUserProfile(loggedInUser.uid);
@@ -195,6 +241,11 @@ export function AuthProvider({ children }) {
   // ─── Logout ───────────────────────────────────────────────────
   async function logout() {
     await signOut(auth);
+    try {
+      await fetch((import.meta.env.VITE_API_BASE_URL || "") + "/api/auth/logout", { method: "POST" });
+    } catch (err) {
+      console.error("Backend logout failed:", err);
+    }
     setUser(null);
     setUserProfile(null);
     setUserRole(null);

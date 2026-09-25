@@ -39,7 +39,7 @@ export default function IftiAiWidget() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('/api/utilities/ai-tiger/chat', { prompt: userMessage });
+      const response = await axios.post((import.meta.env.VITE_API_BASE_URL || "") + "/api/utilities/ai-tiger/chat", { prompt: userMessage });
       if (response.data.success) {
         setMessages(prev => [...prev, { role: 'assistant', content: response.data.data }]);
       } else {

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Public API base URL (no auth required for discovery)
 const api = axios.create({
-  baseURL: "/api/entry-tests",
+  baseURL: (import.meta.env.VITE_API_BASE_URL || "") + "/api/entry-tests",
   headers: {
     "Content-Type": "application/json",
   },

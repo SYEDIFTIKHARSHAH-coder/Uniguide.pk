@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const adminApi = axios.create({ baseURL: "/api/admin", withCredentials: true });
-const aiApi = axios.create({ baseURL: "/api/ai-admissions", withCredentials: true });
-const utilityAdminApi = axios.create({ baseURL: "/api/utilities", withCredentials: true });
+const adminApi = axios.create({ baseURL: (import.meta.env.VITE_API_BASE_URL || "") + "/api/admin", withCredentials: true });
+const aiApi = axios.create({ baseURL: (import.meta.env.VITE_API_BASE_URL || "") + "/api/ai-admissions", withCredentials: true });
+const utilityAdminApi = axios.create({ baseURL: (import.meta.env.VITE_API_BASE_URL || "") + "/api/utilities", withCredentials: true });
 
 // ─── Admin ────────────────────────────────────────────────────────────────────
 export const fetchDashboardAnalytics = () => adminApi.get("/dashboard").then(r => r.data.data);
@@ -58,7 +58,7 @@ export const fetchCooldownStatus = () => aiApi.get("/cooldown-status").then(r =>
 
 // Public
 export const fetchPublishedAdmissions = () =>
-  axios.get("/api/universities/published").then(r => r.data.data);
+  axios.get((import.meta.env.VITE_API_BASE_URL || "") + "/api/universities/published").then(r => r.data.data);
 
 // ─── Articles ─────────────────────────────────────────────────────────────────
 export const fetchArticlesForAdmin = () => adminApi.get("/articles").then(r => r.data.data);

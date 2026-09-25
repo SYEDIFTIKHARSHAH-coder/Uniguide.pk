@@ -18,6 +18,8 @@ import admin from "../firebase/admin.js";
 import { FieldValue } from "firebase-admin/firestore";
 import Groq from "groq-sdk";
 
+const CRAWLER_GROQ_MODEL = process.env.GROQ_CRAWLER_MODEL || process.env.GROQ_MODEL || "openai/gpt-oss-20b";
+
 // ─── Cooldown config ────────────────────────────────────────────────────────
 const COOLDOWN_HOURS = 24;
 const COOLDOWN_MS = COOLDOWN_HOURS * 60 * 60 * 1000;
@@ -27,23 +29,48 @@ const CONFIG_DOC = "crawler_config"; // document ID in 'system_config' collectio
 // Per-source failures are isolated: if fetch/extract fails, that source is
 // skipped and logged, but the remaining sources continue.
 const SOURCES = [
-  // Admissions
+  // ═══════════ Admissions (unchanged) ═══════════
   { url: "https://nu.edu.pk/Admissions/Schedule", contentType: "admission", category: "admissions" },
   { url: "https://lums.edu.pk/admissions", contentType: "admission", category: "admissions" },
   { url: "https://nust.edu.pk/admissions/", contentType: "admission", category: "admissions" },
 
-  // Scholarships
+  // ═══════════ Scholarships (existing + new web sources) ═══════════
   { url: "https://hec.gov.pk/english/scholarships/Pages/Scholarships.aspx", contentType: "scholarship", category: "scholarships" },
   { url: "https://peef.org.pk/", contentType: "scholarship", category: "scholarships" },
+  // New scholarship sources — AI searches these web pages for data
+  { url: "https://www.chevening.org/scholarships/", contentType: "scholarship", category: "scholarships" },
+  { url: "https://www.fulbright.org.pk/", contentType: "scholarship", category: "scholarships" },
+  { url: "https://www.daad.de/en/study-and-research-in-germany/scholarships/", contentType: "scholarship", category: "scholarships" },
+  { url: "https://csc.edu.cn/", contentType: "scholarship", category: "scholarships" },
+  { url: "https://studyinturkey.gov.tr/", contentType: "scholarship", category: "scholarships" },
+  { url: "https://www.scholars4dev.com/category/country/pakistan/", contentType: "scholarship", category: "scholarships" },
+  { url: "https://opportunitiesforyouth.org/tag/pakistan/", contentType: "scholarship", category: "scholarships" },
+  { url: "https://www.topuniversities.com/student-info/scholarship-advice/international-scholarships-pakistani-students", contentType: "scholarship", category: "scholarships" },
+  { url: "https://ehsaas.hec.gov.pk/", contentType: "scholarship", category: "scholarships" },
+  { url: "https://www.scholarshipsinpakistan.com/", contentType: "scholarship", category: "scholarships" },
 
-  // Articles / Guidance
+  // ═══════════ Articles / Guidance (unchanged) ═══════════
   { url: "https://hec.gov.pk/english/news/Pages/default.aspx", contentType: "article", category: "articles" },
 
-  // Free Courses
+  // ═══════════ Free Courses (existing + new web sources) ═══════════
   { url: "https://digiskills.pk/", contentType: "free_course", category: "courses" },
   { url: "https://navttc.gov.pk/courses/", contentType: "free_course", category: "courses" },
+  // New free course sources — AI searches these web pages for data
+  { url: "https://www.coursera.org/courses?query=free", contentType: "free_course", category: "courses" },
+  { url: "https://www.edx.org/search?tab=course", contentType: "free_course", category: "courses" },
+  { url: "https://ocw.mit.edu/courses/", contentType: "free_course", category: "courses" },
+  { url: "https://www.khanacademy.org/", contentType: "free_course", category: "courses" },
+  { url: "https://www.codecademy.com/catalog", contentType: "free_course", category: "courses" },
+  { url: "https://www.freecodecamp.org/news/tag/courses/", contentType: "free_course", category: "courses" },
+  { url: "https://www.udemy.com/courses/free/", contentType: "free_course", category: "courses" },
+  { url: "https://nptel.ac.in/courses", contentType: "free_course", category: "courses" },
+  { url: "https://www.classcentral.com/collection/free-certificates", contentType: "free_course", category: "courses" },
+  { url: "https://alison.com/courses", contentType: "free_course", category: "courses" },
+  { url: "https://www.futurelearn.com/courses", contentType: "free_course", category: "courses" },
+  { url: "https://virtualeducation.pk/", contentType: "free_course", category: "courses" },
+  { url: "https://pec.org.pk/cpd-courses", contentType: "free_course", category: "courses" },
 
-  // Entry Tests
+  // ═══════════ Entry Tests (unchanged) ═══════════
   { url: "https://www.nts.org.pk/", contentType: "entry_test", category: "entryTests" },
 ];
 
@@ -238,7 +265,7 @@ export async function runAICrawler({ triggeredBy = "cron", skipCooldownCheck = f
       // 2. Extract with Groq
       const prompt = buildExtractionPrompt(rawText, source.contentType, source.url);
       const completion = await groq.chat.completions.create({
-        model: "groq/compound",
+        model: CRAWLER_GROQ_MODEL,
         messages: [
           {
             role: "system",

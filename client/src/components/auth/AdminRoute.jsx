@@ -6,7 +6,7 @@ import { SINGLE_ADMIN_EMAIL } from "../../config/constants";
  * AdminRoute — Guards admin-only routes.
  * Enforces SINGLE ADMIN system:
  * 1. If not logged in → redirect to /login
- * 2. If logged in but not admin/super_admin → redirect to /unauthorized
+ * 2. If logged in but not admin → redirect to /unauthorized
  * 3. If admin but email doesn't match SINGLE_ADMIN_EMAIL → redirect to /unauthorized
  * 4. If authorized → render children
  */
@@ -26,11 +26,11 @@ export default function AdminRoute({ children }) {
   }
 
   if (!user) {
-    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+    return <Navigate to="/admin/login" state={{ from: location.pathname }} replace />;
   }
 
   // Check if user has admin role
-  if (userRole !== "admin" && userRole !== "super_admin") {
+  if (userRole !== "admin" && userRole !== "super_admin") { // Keeping super_admin for backwards compatibility with active tokens
     return <Navigate to="/unauthorized" replace />;
   }
 

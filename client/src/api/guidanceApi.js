@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Public API base URL (no auth required for discovering content)
 const api = axios.create({
-  baseURL: "/api/guidance",
+  baseURL: (import.meta.env.VITE_API_BASE_URL || "") + "/api/guidance",
   headers: {
     "Content-Type": "application/json",
   },

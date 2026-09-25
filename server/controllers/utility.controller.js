@@ -6,6 +6,8 @@ import { FieldValue } from "firebase-admin/firestore";
 
 const db = admin.firestore();
 
+const DEFAULT_GROQ_MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-20b";
+
 // ─── Helper: Groq with automatic retry ────────────────────────────────────────
 async function callGroqWithRetry(messages, options = {}, maxRetries = 2) {
   if (!process.env.GROQ_API_KEY) {
@@ -18,7 +20,7 @@ async function callGroqWithRetry(messages, options = {}, maxRetries = 2) {
     try {
       const completion = await groq.chat.completions.create({
         messages,
-        model: options.model || "groq/compound",
+        model: options.model || DEFAULT_GROQ_MODEL,
         temperature: options.temperature ?? 0.7,
         max_tokens: options.max_tokens ?? 600,
         ...options,
@@ -385,7 +387,7 @@ Return ONLY valid JSON array.`;
 // Diagnostic endpoint: tests the Groq API key and returns a clear error reason.
 // Useful for diagnosing chatbot failures without digging through server logs.
 export const aiTigerHealth = async (req, res) => {
-  const status = { keyPresent: false, keyValid: false, error: null, model: "groq/compound" };
+  const status = { keyPresent: false, keyValid: false, error: null, model: DEFAULT_GROQ_MODEL };
 
   if (!process.env.GROQ_API_KEY) {
     status.error = "GROQ_API_KEY is not set in environment variables";

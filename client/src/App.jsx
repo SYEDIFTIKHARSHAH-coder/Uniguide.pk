@@ -109,11 +109,10 @@ function Navbar() {
           <div className="hidden lg:flex items-center gap-0.5">
             {publicLinks.map(({ to, label }) => (
               <Link key={to} to={to}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  location.pathname === to
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${location.pathname === to
                     ? 'bg-blue-50 text-blue-700'
                     : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                }`}>
+                  }`}>
                 {label}
               </Link>
             ))}
@@ -209,9 +208,8 @@ function Navbar() {
         <div className="lg:hidden bg-white border-t border-slate-200 px-4 py-4 space-y-1 shadow-lg">
           {publicLinks.map(({ to, label }) => (
             <Link key={to} to={to} onClick={() => setMenuOpen(false)}
-              className={`block px-4 py-2.5 rounded-lg text-sm font-medium ${
-                location.pathname === to ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100'
-              }`}>
+              className={`block px-4 py-2.5 rounded-lg text-sm font-medium ${location.pathname === to ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100'
+                }`}>
               {label}
             </Link>
           ))}

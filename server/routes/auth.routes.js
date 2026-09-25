@@ -78,14 +78,20 @@ router.post("/verify-firebase-token", async (req, res) => {
       return res.status(400).json({ success: false, message: "Token has no email claim" });
     }
 
-    // ── SUPER ADMIN CHECK ──────────────────────────────────────────────────────
-    const role = verifiedEmail === SUPER_ADMIN_EMAIL ? "super_admin" : "student";
+    // ── ROLE ASSIGNMENT ────────────────────────────────────────────────────────
+    // Super admin email gets super_admin role. Everyone else gets student.
+    const role = (SUPER_ADMIN_EMAIL && verifiedEmail === SUPER_ADMIN_EMAIL)
+      ? "super_admin"
+      : "student";
 
-    // Create or update the user document in Firestore to ensure it exists
+    // Create the user document in Firestore if it doesn't exist yet.
+    // If it DOES exist, preserve the stored role (an admin may have manually
+    // elevated this user — don't overwrite it on every login).
     const db = admin.firestore();
     const userRef = db.collection("users").doc(uid);
     const userDoc = await userRef.get();
-    
+
+    let effectiveRole = role;
     if (!userDoc.exists) {
       await userRef.set({
         userId: uid,
@@ -96,14 +102,16 @@ router.post("/verify-firebase-token", async (req, res) => {
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
     } else {
-      // Ensure super_admin role is applied if they match the email but previously had student role
-      if (role === "super_admin" && userDoc.data().role !== "super_admin") {
-         await userRef.update({ role: "super_admin" });
+      // Preserve existing role from Firestore (handles manual elevation)
+      effectiveRole = userDoc.data()?.role || role;
+      // Always keep super_admin if this is the super admin email
+      if (SUPER_ADMIN_EMAIL && verifiedEmail === SUPER_ADMIN_EMAIL) {
+        effectiveRole = "super_admin";
       }
     }
 
     // Issue JWT session cookie
-    issueSessionCookie(res, { uid, email: verifiedEmail, role, name });
+    issueSessionCookie(res, { uid, email: verifiedEmail, role: effectiveRole, name });
 
     console.log(`[AUTH] Firebase sign-in verified: ${verifiedEmail} → role: ${role}`);
 
