@@ -53,7 +53,7 @@ const statusBadge = {
   rejected: "bg-rose-100 text-rose-800",
 };
 
-export default function AiAdmissionDashboard() {
+export default function AiAdmissionsPage() {
   const [statusFilter, setStatusFilter] = useState("pending_review");
   const [selectedDisc, setSelectedDisc] = useState(null);
   const [editMode, setEditMode] = useState(false);
