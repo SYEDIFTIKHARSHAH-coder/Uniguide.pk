@@ -42,7 +42,7 @@ const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const DocumentVerification = lazy(() => import('./pages/admin/DocumentVerification'));
 const UserManagement = lazy(() => import('./pages/admin/UserManagement'));
 const SystemSettings = lazy(() => import('./pages/admin/SystemSettings'));
-const AiAdmissionsPage = lazy(() => import('./pages/admin/AiAdmissionDashboard'));
+const AiAdmissionsPage = lazy(() => import('./pages/admin/AiAdmissionDashboard?version=2'));
 const ApplicationsManagement = lazy(() => import('./pages/admin/ApplicationsManagement'));
 const UniversitiesManagement = lazy(() => import('./pages/admin/UniversitiesManagement'));
 const CoursesManagement = lazy(() => import('./pages/admin/CoursesManagement'));
