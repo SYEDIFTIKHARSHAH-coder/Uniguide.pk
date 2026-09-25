@@ -21,10 +21,28 @@ export function getAdminApp() {
 
   if (serviceAccountJson) {
     try {
-      let serviceAccount = JSON.parse(serviceAccountJson);
-      if (typeof serviceAccount === "string") {
-        serviceAccount = JSON.parse(serviceAccount);
+      const rawValues = [serviceAccountJson.trim()];
+      if (rawValues[0].includes('\\"')) {
+        rawValues.push(rawValues[0].replace(/\\"/g, '"'));
       }
+
+      let serviceAccount;
+      for (const rawValue of rawValues) {
+        try {
+          serviceAccount = JSON.parse(rawValue);
+          if (typeof serviceAccount === "string") {
+            serviceAccount = JSON.parse(serviceAccount);
+          }
+          break;
+        } catch {
+          serviceAccount = null;
+        }
+      }
+
+      if (!serviceAccount) {
+        throw new Error("The value is not valid service-account JSON");
+      }
+
       adminApp = initializeApp({
         credential: cert(serviceAccount),
       });
